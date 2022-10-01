@@ -1,0 +1,17 @@
+.set-data-box {
+  display: grid;
+  margin: auto;
+  grid-template-columns: repeat(4, auto);
+  flex-wrap: wrap;
+}
+
+.set-data-inner {
+  padding: 30px;
+}
+
+@media (max-width: 850px) {
+  .set-data-box {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+  }
+}
