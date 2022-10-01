@@ -15,8 +15,8 @@ export const EloInfo = () => {
 
   return (
     <div className="elo-info">
-      <h4>Starting ELO: ~2200</h4>
-      <h4>{`Total wins/losses: ${totalScore()}`}</h4>
+      <h4>Starting ELO: ~2200&nbsp;&nbsp;&nbsp;</h4>
+      <h5>{`Total wins/losses: ${totalScore()}`}</h5>
     </div>
   );
 };

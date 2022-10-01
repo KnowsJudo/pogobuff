@@ -8,6 +8,8 @@ export const Scorer = (props) => {
 
   const updateScore = (side) => {
     const newUserValues = [...setsData];
+    if (newUserValues[props.id].wins + newUserValues[props.id].losses >= 5)
+      return;
     newUserValues[props.id] = {
       wins: side === "left" ? props.score.wins + 1 : props.score.wins,
       losses: side === "right" ? props.score.losses + 1 : props.score.losses,
