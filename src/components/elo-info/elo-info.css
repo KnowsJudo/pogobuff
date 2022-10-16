@@ -1,5 +1,9 @@
-.elo-info {
+.current-stats {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.elo-info {
+  display: flex;
 }

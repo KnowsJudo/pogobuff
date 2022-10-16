@@ -4,10 +4,10 @@ import { ScoreButton } from "../score-button/score-button";
 import { UserContext } from "../../context";
 
 export const Scorer = (props) => {
-  const { setsData, setSetsData } = useContext(UserContext);
+  const { userData, setUserData } = useContext(UserContext);
 
   const updateScore = (side) => {
-    const newUserValues = [...setsData];
+    const newUserValues = [...userData.sets];
     if (newUserValues[props.id].wins + newUserValues[props.id].losses >= 5)
       return;
     newUserValues[props.id] = {
@@ -15,7 +15,12 @@ export const Scorer = (props) => {
       losses: side === "right" ? props.score.losses + 1 : props.score.losses,
       ties: props.score.ties,
     };
-    setSetsData(newUserValues);
+    setUserData((prev) => {
+      return {
+        elo: prev.elo,
+        sets: newUserValues,
+      };
+    });
   };
 
   return (
