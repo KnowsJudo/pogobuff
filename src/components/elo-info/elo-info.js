@@ -1,10 +1,23 @@
-// import { TextField } from "@material-ui/core";
-import { useContext } from "react";
+import { Button, TextField } from "@material-ui/core";
+import { useContext, useState, useRef } from "react";
 import { UserContext } from "../../context";
 import "./elo-info.css";
 
 export const EloInfo = () => {
-  const { userData } = useContext(UserContext);
+  const { userData, setUserData } = useContext(UserContext);
+  const [eloEntered, setEloEntered] = useState(false);
+
+  const eloRef = useRef();
+
+  const handleSubmit = () => {
+    setUserData((prev) => {
+      return {
+        elo: eloRef.current.value,
+        sets: [...prev.sets],
+      };
+    });
+    setEloEntered(true);
+  };
 
   const totalScore = () => {
     const winsArray = userData.sets.map((next) => next.wins);
@@ -17,10 +30,20 @@ export const EloInfo = () => {
   return (
     <div className="current-stats">
       <span className="elo-info">
-        <h4>Starting ELO:</h4>&nbsp;
-        <h4>{userData.elo}</h4>
+        <h5>Starting ELO:&nbsp;</h5>
+        {!eloEntered ? (
+          <span className="enter-elo">
+            <TextField type="number" inputRef={eloRef}></TextField>
+            <Button onClick={(e) => handleSubmit(e)}>Submit</Button>
+          </span>
+        ) : (
+          <span className="edit-elo">
+            <h5>{userData.elo}</h5>
+            <Button onClick={() => setEloEntered(false)}>Edit</Button>
+          </span>
+        )}
       </span>
-      <h5>{`Total wins/losses: ${totalScore()}`}</h5>
+      <h5>{`Wins/losses: ${totalScore()}`}</h5>
     </div>
   );
 };
