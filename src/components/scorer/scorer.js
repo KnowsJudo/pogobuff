@@ -8,16 +8,31 @@ export const Scorer = (props) => {
 
   const updateScore = (side) => {
     const newUserValues = [...userData.sets];
-    if (newUserValues[props.id].wins + newUserValues[props.id].losses >= 5)
+    if (newUserValues[props.id].wins + newUserValues[props.id].losses >= 5) {
+      console.log("set");
+
       return;
+    }
+
     newUserValues[props.id] = {
       wins: side === "left" ? props.score.wins + 1 : props.score.wins,
       losses: side === "right" ? props.score.losses + 1 : props.score.losses,
       ties: props.score.ties,
     };
+
     setUserData((prev) => {
       return {
-        elo: prev.elo,
+        elo: {
+          starting: prev.elo.starting,
+          current: !prev.elo.starting
+            ? 0
+            : side === "left"
+            ? prev.elo.current + 17
+            : prev.elo.current - 17,
+          change: side === "left" ? prev.elo.change + 17 : prev.elo.change - 17,
+          ending: prev.elo.ending,
+        },
+
         sets: newUserValues,
       };
     });

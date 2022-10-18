@@ -11,7 +11,7 @@ export const SetData = () => {
   const removeSet = (setNumber) => {
     setUserData((prev) => {
       return {
-        elo: prev.elo,
+        elo: { ...prev.elo },
         sets: prev.sets.filter((match, ind) => ind !== setNumber),
       };
     });

@@ -11,7 +11,7 @@ export const SetPage = () => {
   const addSet = () => {
     setUserData((prev) => {
       return {
-        elo: prev.elo,
+        elo: { ...prev.elo },
         sets: [...prev.sets, { wins: 0, losses: 0, ties: 0 }],
       };
     });

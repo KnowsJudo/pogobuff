@@ -5,7 +5,7 @@ export const initialUserState = () => {
   return stored
     ? stored
     : {
-        elo: 0,
+        elo: { starting: 0, current: 0, change: 0, ending: 0 },
         sets: [
           {
             wins: 0,
@@ -14,6 +14,11 @@ export const initialUserState = () => {
           },
         ],
       };
+};
+
+export const retrieveElo = () => {
+  const stored = JSON.parse(sessionStorage.getItem("User Stats"));
+  return stored.elo.starting ? true : false;
 };
 
 export const UserContext = createContext({

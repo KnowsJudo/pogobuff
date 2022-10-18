@@ -1,9 +1,19 @@
 .current-stats {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
 }
 
 .elo-info {
   display: flex;
+  align-items: center;
+}
+
+.enter-elo {
+  display: flex;
+}
+
+.edit-elo {
+  display: flex;
+  align-items: center;
 }
