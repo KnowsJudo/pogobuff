@@ -6,16 +6,28 @@
 }
 
 .set-data-inner {
+  display: flex;
+  flex-direction: column;
   padding: 30px;
 }
 
-@media (max-width: 1100px) {
+.set-data-edit {
+  display: flex;
+}
+
+@media (max-width: 1500px) {
+  .set-data-box {
+    grid-template-columns: repeat(3, auto);
+  }
+}
+
+@media (max-width: 1200px) {
   .set-data-box {
     grid-template-columns: repeat(2, auto);
   }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 780px) {
   .set-data-box {
     grid-template-columns: repeat(1, auto);
   }

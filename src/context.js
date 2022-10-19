@@ -21,6 +21,11 @@ export const retrieveElo = () => {
   return stored.elo.starting ? true : false;
 };
 
+export const retainTieState = () => {
+  const stored = JSON.parse(sessionStorage.getItem("Ties Added"));
+  return stored ? stored : [false];
+};
+
 export const UserContext = createContext({
   userData: {},
   setUserData: () => {},

@@ -1,14 +1,20 @@
 import { Button } from "@mui/material";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { EloInfo } from "../../components/elo-info/elo-info";
 import { SetData } from "../../components/set-data/set-data";
-import { UserContext } from "../../context";
+import { retainTieState, UserContext } from "../../context";
 import "./set-page.css";
 
 export const SetPage = () => {
   const { setUserData } = useContext(UserContext);
+  const [addTie, setAddTie] = useState(() => retainTieState());
+
+  useEffect(() => {
+    sessionStorage.setItem("Ties Added", JSON.stringify(addTie));
+  }, [addTie]);
 
   const addSet = () => {
+    setAddTie((prev) => [...prev, false]);
     setUserData((prev) => {
       return {
         elo: { ...prev.elo },
@@ -19,8 +25,8 @@ export const SetPage = () => {
 
   return (
     <section className="set-page">
-      <EloInfo />
-      <SetData />
+      <EloInfo addTie={addTie} />
+      <SetData addTie={addTie} setAddTie={setAddTie} />
       <Button
         sx={{ padding: "10px", margin: "auto 30%" }}
         variant="contained"
