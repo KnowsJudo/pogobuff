@@ -19,14 +19,19 @@ export const SetData = (props) => {
 
   const removeSet = (setNumber) => {
     props.setAddTie((prev) => prev.filter((match, ind) => ind !== setNumber));
+
+    const setToRemove = userData.sets.find((match, ind) => ind === setNumber);
+    const winChange = setToRemove.wins > 0 ? setToRemove.wins * 17 : 0;
+    const lossChange = setToRemove.losses > 0 ? setToRemove.losses * -17 : 0;
+    const totalChange = winChange + lossChange;
+
     setUserData((prev) => {
       return {
         elo: {
-          starting: prev.starting,
-          //TODO: Update elo values
-          current: prev.current,
-          change: prev.change,
-          ending: prev.ending,
+          starting: prev.elo.starting,
+          current: prev.elo.current - totalChange,
+          change: prev.elo.change - totalChange,
+          ending: prev.elo.ending,
         },
         sets: prev.sets.filter((match, ind) => ind !== setNumber),
       };
