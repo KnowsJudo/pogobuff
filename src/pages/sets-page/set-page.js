@@ -3,6 +3,10 @@ import { useContext, useEffect, useState } from "react";
 import { EloInfo } from "../../components/elo-info/elo-info";
 import { SetData } from "../../components/set-data/set-data";
 import { retainTieState, UserContext } from "../../context";
+import { NavBar } from "../../components/nav-bar/nav-bar";
+import { Link } from "react-router-dom";
+import Tooltip from "@mui/material/Tooltip";
+import UndoIcon from "@mui/icons-material/Undo";
 import "./set-page.css";
 
 export const SetPage = () => {
@@ -25,10 +29,22 @@ export const SetPage = () => {
 
   return (
     <section className="set-page">
+      <NavBar />
+      <Link
+        to={`/`}
+        style={{
+          margin: "1% auto auto 5%",
+          color: "black",
+        }}
+      >
+        <Tooltip title="Home">
+          <UndoIcon sx={{ fontSize: "40px" }} />
+        </Tooltip>
+      </Link>
       <EloInfo addTie={addTie} />
       <SetData addTie={addTie} setAddTie={setAddTie} />
       <Button
-        sx={{ padding: "10px", margin: "auto 30%" }}
+        sx={{ padding: "10px", margin: "auto 30% 3%" }}
         variant="contained"
         onClick={() => addSet()}
       >

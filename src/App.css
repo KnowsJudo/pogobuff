@@ -1,9 +1,10 @@
 .App {
   display: flex;
   flex-direction: column;
-  background-color: #282c34;
   height: 100%;
   overflow: auto;
+  background-image: url("./img/background.avif");
+  background-size: 65% 100%;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -16,10 +17,21 @@
   display: flex;
   flex-direction: column;
   margin: 0 15%;
-  overflow: hidden;
   flex: 1 1 auto;
   background-color: white;
-  height: 100vh;
+  height: 100%;
   font-size: calc(10px + 2vmin);
   color: black;
+}
+
+@media (max-width: 600px) {
+  .App-container {
+    margin: 0 5%;
+  }
+}
+
+@media (max-width: 1250px) {
+  .App {
+    background-size: 80% 100%;
+  }
 }
