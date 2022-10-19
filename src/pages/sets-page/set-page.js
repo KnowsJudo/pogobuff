@@ -33,18 +33,18 @@ export const SetPage = () => {
       <Link
         to={`/`}
         style={{
-          margin: "1% auto auto 5%",
+          margin: "1% 0 0 5%",
           color: "black",
         }}
       >
         <Tooltip title="Home">
-          <UndoIcon sx={{ fontSize: "40px" }} />
+          <UndoIcon sx={{ fontSize: "40px", margin: "auto" }} />
         </Tooltip>
       </Link>
       <EloInfo addTie={addTie} />
       <SetData addTie={addTie} setAddTie={setAddTie} />
       <Button
-        sx={{ padding: "10px", margin: "auto 30% 3%" }}
+        sx={{ padding: "10px", margin: "auto 30% 15%" }}
         variant="contained"
         onClick={() => addSet()}
       >

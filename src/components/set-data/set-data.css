@@ -1,6 +1,6 @@
 .set-data-box {
   display: grid;
-  margin: auto;
+  margin: 0 auto;
   grid-template-columns: repeat(4, auto);
   flex-wrap: wrap;
 }
