@@ -1,5 +1,9 @@
-.set-page {
+.candy-page {
   display: flex;
   flex-direction: column;
   flex: 1 1 auto;
+}
+
+.current-candy {
+  margin: 0 auto auto auto;
 }

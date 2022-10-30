@@ -6,6 +6,7 @@ import { UserContext } from "./context";
 import { initialUserState } from "./context";
 import { HomePage } from "./pages/home-page/home-page";
 import "./App.css";
+import { CandyPage } from "./pages/candy-page/candy-page";
 
 const App = () => {
   const [userData, setUserData] = useState(() => initialUserState());
@@ -22,6 +23,7 @@ const App = () => {
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/sets" element={<SetPage />} />
+              <Route path="/candy" element={<CandyPage />} />
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </HashRouter>

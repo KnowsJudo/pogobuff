@@ -13,6 +13,8 @@ export const initialUserState = () => {
             ties: 0,
           },
         ],
+        candy: 0,
+        candyXL: 0,
       };
 };
 
