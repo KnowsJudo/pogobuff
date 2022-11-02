@@ -5,5 +5,11 @@
 }
 
 .current-candy {
-  margin: 0 auto auto auto;
+  margin: 0 auto;
+}
+
+.candy-pokes {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
 }
