@@ -11,7 +11,7 @@ export const HomePage = () => {
         container
         columnSpacing={10}
         rowSpacing={2}
-        sx={{ marginLeft: "25%" }}
+        style={{ marginLeft: "25%" }}
       >
         <GridItem link="sets" title="GBL Sets Tracker" />
         <GridItem link="candy" title="Rare Candy Candidates" />

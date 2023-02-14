@@ -6,7 +6,7 @@ export const GridItem = (props) => {
     <Grid
       item
       xs={4}
-      sx={{
+      style={{
         border: "1px solid black",
         borderRadius: "5px",
         margin: "1%",

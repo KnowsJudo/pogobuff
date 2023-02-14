@@ -55,7 +55,7 @@ export const EloInfo = () => {
             <Tooltip title="Edit">
               <EditIcon
                 onClick={() => setEloEntered(false)}
-                sx={{
+                style={{
                   fontSize: 14,
                   marginLeft: "25%",
                   "&:hover": { cursor: "pointer" },

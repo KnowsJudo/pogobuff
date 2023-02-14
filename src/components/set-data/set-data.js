@@ -53,7 +53,7 @@ export const SetData = (props) => {
                       onClick={() => {
                         addTieToArray(ind);
                       }}
-                      sx={{
+                      style={{
                         fontSize: 18,
                         marginRight: "auto",
                         marginLeft: "5%",
@@ -66,7 +66,7 @@ export const SetData = (props) => {
               <Tooltip title="Remove set">
                 <DeleteIcon
                   onClick={() => removeSet(ind)}
-                  sx={{
+                  style={{
                     fontSize: 18,
                     margin: props.addTie[ind] ? "auto" : "auto 5%",
                     "&:hover": { cursor: "pointer" },
