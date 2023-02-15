@@ -1,7 +1,7 @@
 import { createContext } from "react";
 
 export const initialUserState = () => {
-  const stored = JSON.parse(sessionStorage.getItem("User Stats"));
+  const stored = JSON.parse(sessionStorage.getItem("User Stats") as string);
   return stored
     ? stored
     : {
@@ -19,16 +19,21 @@ export const initialUserState = () => {
 };
 
 export const retrieveElo = () => {
-  const stored = JSON.parse(sessionStorage.getItem("User Stats"));
+  const stored = JSON.parse(sessionStorage.getItem("User Stats") as string);
   return stored.elo.starting ? true : false;
 };
 
 export const retainTieState = () => {
-  const stored = JSON.parse(sessionStorage.getItem("Ties Added"));
+  const stored = JSON.parse(sessionStorage.getItem("Ties Added") as string);
   return stored ? stored : [false];
 };
 
-export const UserContext = createContext({
+interface IUserContext {
+  userData: {};
+  setUserData: React.Dispatch<React.SetStateAction<any>>;
+}
+
+export const UserContext = createContext<IUserContext>({
   userData: {},
   setUserData: () => {},
 });

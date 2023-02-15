@@ -1,12 +1,12 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { HashRouter, Route, Routes } from "react-router-dom";
 import { NotFoundPage } from "./pages/not-found-page/not-found-page";
 import { SetPage } from "./pages/sets-page/set-page";
 import { UserContext } from "./context";
 import { initialUserState } from "./context";
 import { HomePage } from "./pages/home-page/home-page";
-import "./App.css";
 import { CandyPage } from "./pages/candy-page/candy-page";
+import "./App.css";
 
 const App = () => {
   const [userData, setUserData] = useState(() => initialUserState());

@@ -1,9 +1,10 @@
+import React from "react";
 import { NavBar } from "../../components/nav-bar/nav-bar";
 import { useContext, useState } from "react";
 import { UserContext } from "../../context";
+import { Button, Input, List, Tooltip } from "@material-ui/core";
 import rareC from "../../img/rare.webp";
 import xLC from "../../img/xl-candy.webp";
-import { Button, Input, List, Tooltip } from "@material-ui/core";
 import "./candy-page.css";
 
 export const CandyPage = () => {
@@ -11,7 +12,7 @@ export const CandyPage = () => {
   const [candidates, setCandidates] = useState([""]);
   const [newCandidate, setNewCandidate] = useState("");
 
-  const handleCandy = (event, type) => {
+  const handleCandy = (event: any, type: string) => {
     event.preventDefault();
     setUserData((prev) => {
       return {
