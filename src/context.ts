@@ -1,19 +1,19 @@
 import { createContext } from "react";
 
+export interface ISet {
+  wins: number;
+  losses: number;
+  ties: number;
+}
+
 export interface IUserState {
   elo: { starting: number; current: number; change: number; ending: number };
-  sets: [
-    {
-      wins: number;
-      losses: number;
-      ties: number;
-    }
-  ];
+  sets: ISet[];
   candy: number;
   candyXL: number;
 }
 
-export const initialUserState = () => {
+export const initialUserState: () => IUserState = () => {
   const stored = JSON.parse(sessionStorage.getItem("User Stats") as string);
   return stored
     ? stored
@@ -43,7 +43,7 @@ export const retainTieState = () => {
 
 interface IUserContext {
   userData: IUserState;
-  setUserData: React.Dispatch<React.SetStateAction<any>>;
+  setUserData: React.Dispatch<React.SetStateAction<IUserState>>;
 }
 
 export const UserContext = createContext<IUserContext>({

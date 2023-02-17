@@ -1,7 +1,13 @@
+import React from "react";
 import { Grid } from "@mui/material";
 import { Link } from "react-router-dom";
 
-export const GridItem = (props) => {
+interface IGridItem {
+  link: string;
+  title: string;
+}
+
+export const GridItem: React.FC<IGridItem> = (props) => {
   return (
     <Grid
       item

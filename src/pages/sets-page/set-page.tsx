@@ -1,3 +1,4 @@
+import React from "react";
 import { Button } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
 import { EloInfo } from "../../components/elo-info/elo-info";
@@ -18,9 +19,10 @@ export const SetPage = () => {
   }, [addTie]);
 
   const addSet = () => {
-    setAddTie((prev) => [...prev, false]);
+    setAddTie((prev: boolean[]) => [...prev, false]);
     setUserData((prev) => {
       return {
+        ...prev,
         elo: { ...prev.elo },
         sets: [...prev.sets, { wins: 0, losses: 0, ties: 0 }],
       };
@@ -41,7 +43,9 @@ export const SetPage = () => {
           <UndoIcon style={{ fontSize: "40px", margin: "auto" }} />
         </Tooltip>
       </Link>
-      <EloInfo addTie={addTie} />
+      <EloInfo
+      // addTie={addTie}
+      />
       <SetData addTie={addTie} setAddTie={setAddTie} />
       <Button
         style={{ padding: "10px", margin: "auto 30% 15%" }}

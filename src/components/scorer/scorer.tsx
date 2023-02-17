@@ -1,12 +1,19 @@
+import React from "react";
 import { useContext } from "react";
 import { ScoreButton } from "../score-button/score-button";
-import { UserContext } from "../../context";
+import { ISet, IUserState, UserContext } from "../../context";
 import { Stack } from "@mui/material";
 
-export const Scorer = (props) => {
+interface IScorer {
+  id: number;
+  score: ISet;
+  addTie: boolean;
+}
+
+export const Scorer: React.FC<IScorer> = (props) => {
   const { userData, setUserData } = useContext(UserContext);
 
-  const updateScore = (side) => {
+  const updateScore = (side: string) => {
     const newUserValues = [...userData.sets];
     if (
       newUserValues[props.id].wins +
@@ -23,8 +30,9 @@ export const Scorer = (props) => {
       ties: side === "tie" ? props.score.ties + 1 : props.score.ties,
     };
 
-    setUserData((prev) => {
+    setUserData((prev: IUserState) => {
       return {
+        ...prev,
         elo: {
           starting: prev.elo.starting,
           current: !prev.elo.starting
@@ -61,16 +69,14 @@ export const Scorer = (props) => {
         updateScore={updateScore}
         side={"right"}
       />
-      {props.addTie && (
-        <>
-          <h1>-</h1>
-          <ScoreButton
-            score={props.score.ties}
-            updateScore={updateScore}
-            side={"tie"}
-          />
-        </>
-      )}
+      <>
+        <h1>-</h1>
+        <ScoreButton
+          score={props.score.ties}
+          updateScore={updateScore}
+          side={"tie"}
+        />
+      </>
     </Stack>
   );
 };

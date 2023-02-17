@@ -1,6 +1,13 @@
+import React from "react";
 import { Button } from "@mui/material";
 
-export const ScoreButton = (props) => {
+interface IScoreButton {
+  updateScore: (side: string) => void;
+  side: string;
+  score: number;
+}
+
+export const ScoreButton: React.FC<IScoreButton> = (props) => {
   return (
     <Button
       onClick={() => props.updateScore(props.side)}

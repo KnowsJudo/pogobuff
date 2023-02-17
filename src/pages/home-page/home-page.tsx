@@ -1,3 +1,4 @@
+import React from "react";
 import { Grid } from "@mui/material";
 import { GridItem } from "../../components/grid-item/grid-item";
 import heading from "../../img/pogo.png";

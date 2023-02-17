@@ -1,29 +1,32 @@
-import { Button, TextField } from "@material-ui/core";
-import { useContext, useState, useRef } from "react";
-import { retrieveElo, UserContext } from "../../context";
+import React from "react";
+import { Button, Input } from "@material-ui/core";
+import { useContext, useState } from "react";
+import { IUserState, retrieveElo, UserContext } from "../../context";
 import Tooltip from "@mui/material/Tooltip";
 import EditIcon from "@mui/icons-material/Edit";
 import "./elo-info.css";
 
 export const EloInfo = () => {
   const { userData, setUserData } = useContext(UserContext);
+  const [elo, setElo] = useState<number>(0);
   const [eloEntered, setEloEntered] = useState(() => retrieveElo());
 
-  const eloRef = useRef();
+  // const eloRef = useRef(0);
+
+  const handleElo = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setElo(Number(e.target.value));
+  };
 
   const handleSubmit = () => {
     setEloEntered(true);
-    setUserData((prev) => {
+    setUserData((prev: IUserState) => {
       return {
+        ...prev,
         elo: {
-          starting: Number(eloRef.current.value),
-          current: prev.elo.change
-            ? Number(eloRef.current.value) + prev.elo.change
-            : Number(eloRef.current.value),
+          starting: elo,
+          current: prev.elo.change && elo ? elo + prev.elo.change : elo,
           change: prev.elo.change ? prev.elo.change : 0,
-          ending: prev.elo.ending
-            ? prev.elo.ending
-            : Number(eloRef.current.value),
+          ending: prev.elo.ending ? prev.elo.ending : elo,
         },
         sets: [...prev.sets],
       };
@@ -46,8 +49,15 @@ export const EloInfo = () => {
         <h6>Starting ELO:&nbsp;</h6>
         {!eloEntered ? (
           <span className="enter-elo">
-            <TextField type="number" inputRef={eloRef} />
-            <Button onClick={(e) => handleSubmit(e)}>Submit</Button>
+            <Input
+              type="number"
+              // inputRef={eloRef}
+              value={elo === 0 ? undefined : elo}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                handleElo(e)
+              }
+            />
+            <Button onClick={() => handleSubmit()}>Submit</Button>
           </span>
         ) : (
           <span className="edit-elo">
@@ -55,7 +65,7 @@ export const EloInfo = () => {
             <Tooltip title="Edit">
               <EditIcon
                 onClick={() => setEloEntered(false)}
-                style={{
+                sx={{
                   fontSize: 14,
                   marginLeft: "25%",
                   "&:hover": { cursor: "pointer" },
