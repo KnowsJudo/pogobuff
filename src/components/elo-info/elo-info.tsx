@@ -11,8 +11,6 @@ export const EloInfo = () => {
   const [elo, setElo] = useState<number>(0);
   const [eloEntered, setEloEntered] = useState(() => retrieveElo());
 
-  // const eloRef = useRef(0);
-
   const handleElo = (e: React.ChangeEvent<HTMLInputElement>) => {
     setElo(Number(e.target.value));
   };
@@ -51,8 +49,8 @@ export const EloInfo = () => {
           <span className="enter-elo">
             <Input
               type="number"
-              // inputRef={eloRef}
-              value={elo === 0 ? undefined : elo}
+              value={elo === 0 ? "" : elo}
+              placeholder=" #"
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 handleElo(e)
               }

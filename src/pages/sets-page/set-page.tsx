@@ -43,9 +43,7 @@ export const SetPage = () => {
           <UndoIcon style={{ fontSize: "40px", margin: "auto" }} />
         </Tooltip>
       </Link>
-      <EloInfo
-      // addTie={addTie}
-      />
+      <EloInfo />
       <SetData addTie={addTie} setAddTie={setAddTie} />
       <Button
         style={{ padding: "10px", margin: "auto 30% 15%" }}
