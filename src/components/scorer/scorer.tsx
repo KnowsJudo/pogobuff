@@ -7,7 +7,6 @@ import { Stack } from "@mui/material";
 interface IScorer {
   id: number;
   score: ISet;
-  addTie: boolean;
 }
 
 export const Scorer: React.FC<IScorer> = (props) => {
