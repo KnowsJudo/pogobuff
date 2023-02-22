@@ -12,12 +12,15 @@ export const CandyPage = () => {
   const [candidates, setCandidates] = useState([""]);
   const [newCandidate, setNewCandidate] = useState("");
 
-  const handleCandy = (event: any, type: string) => {
+  const handleCandy = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    type: string
+  ) => {
     event.preventDefault();
     setUserData((prev: IUserState) => {
       return {
         ...prev,
-        [type]: event.target.value > 0 ? event.target.value : 0,
+        [type]: event.target.value,
       };
     });
   };
@@ -48,7 +51,7 @@ export const CandyPage = () => {
             type="number"
             onChange={(e) => handleCandy(e, "candy")}
             value={userData.candy}
-          ></Input>
+          />
         </h5>
         <h5>
           Current XL: <img height={70} width={70} src={xLC} alt="XL candy" />
@@ -57,7 +60,7 @@ export const CandyPage = () => {
             type="number"
             onChange={(e) => handleCandy(e, "candyXL")}
             value={userData.candyXL}
-          ></Input>
+          />
         </h5>
       </div>
       <div className="candy-pokes">
@@ -67,7 +70,7 @@ export const CandyPage = () => {
             type="string"
             onChange={(e) => handleCandidate(e)}
             value={newCandidate}
-          ></Input>
+          />
           <Tooltip title="Add to List">
             <Button onClick={() => addNewCandidate()}>{"->"}</Button>
           </Tooltip>

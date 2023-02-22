@@ -33,7 +33,7 @@ export const SetPage = () => {
     <section className="set-page">
       <NavBar />
       <Link
-        to={`/`}
+        to="/"
         style={{
           margin: "1% 0 0 5%",
           color: "black",
