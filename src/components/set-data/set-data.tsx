@@ -15,6 +15,14 @@ interface ISetData {
 export const SetData: React.FC<ISetData> = (props) => {
   const { userData, setUserData } = useContext(UserContext);
 
+  const addTieToArray = (setNumber: number) => {
+    props.setAddTie((prev) =>
+      prev.map((next, i) => {
+        return i === setNumber ? true : next;
+      })
+    );
+  };
+
   const removeSet = (setNumber: number) => {
     props.setAddTie((prev) => prev.filter((match, ind) => ind !== setNumber));
 
@@ -46,15 +54,25 @@ export const SetData: React.FC<ISetData> = (props) => {
         return (
           <div key={ind} className="set-data-inner">
             <h3>{`Set ${ind + 1}:`}</h3>
-            <Scorer id={ind} score={next} />
+            <Scorer id={ind} score={next} addTie={props.addTie[ind]} />
             <span className="set-data-edit">
-              <GraphicEqIcon
-                sx={{
-                  fontSize: 18,
-                  marginRight: "auto",
-                  marginLeft: "5%",
-                }}
-              />
+              {!props.addTie[ind] && (
+                <>
+                  <Tooltip title="Add a tie">
+                    <GraphicEqIcon
+                      onClick={() => {
+                        addTieToArray(ind);
+                      }}
+                      sx={{
+                        fontSize: 18,
+                        marginRight: "auto",
+                        marginLeft: "5%",
+                        "&:hover": { cursor: "pointer" },
+                      }}
+                    />
+                  </Tooltip>
+                </>
+              )}
               <Tooltip title="Remove set">
                 <DeleteIcon
                   onClick={() => removeSet(ind)}

@@ -7,10 +7,12 @@ import { Stack } from "@mui/material";
 interface IScorer {
   id: number;
   score: ISet;
+  addTie: boolean;
 }
 
 export const Scorer: React.FC<IScorer> = (props) => {
   const { userData, setUserData } = useContext(UserContext);
+  console.log(props.addTie);
 
   const updateScore = (side: string) => {
     const newUserValues = [...userData.sets];
@@ -68,14 +70,16 @@ export const Scorer: React.FC<IScorer> = (props) => {
         updateScore={updateScore}
         side={"right"}
       />
-      <>
-        <h1>-</h1>
-        <ScoreButton
-          score={props.score.ties}
-          updateScore={updateScore}
-          side={"tie"}
-        />
-      </>
+      {props.addTie && (
+        <>
+          <h1>-</h1>
+          <ScoreButton
+            score={props.score.ties}
+            updateScore={updateScore}
+            side={"tie"}
+          />
+        </>
+      )}
     </Stack>
   );
 };
