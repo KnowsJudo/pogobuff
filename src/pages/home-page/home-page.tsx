@@ -1,9 +1,9 @@
 import React from "react";
-import { Button, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
+import { HomeLink } from "../../components/home-link/home-link";
 import heading from "../../img/pogo.png";
 import HorizontalRuleRoundedIcon from "@mui/icons-material/HorizontalRuleRounded";
 import "./home-page.css";
-import { Link } from "react-router-dom";
 
 export const HomePage = () => {
   return (
@@ -18,32 +18,16 @@ export const HomePage = () => {
       />
       <Grid container spacing={5} style={{ margin: "3% 0 0 33%" }}>
         <Grid item>
-          <Link to="/sets" style={{ textDecoration: "none" }}>
-            <Button variant="contained" style={{ backgroundColor: "black" }}>
-              GBL Sets Tracker
-            </Button>
-          </Link>
+          <HomeLink link="/sets" title="Gbl Sets Tracker" />
         </Grid>
         <Grid item>
-          <Link to="/candy" style={{ textDecoration: "none" }}>
-            <Button variant="contained" style={{ backgroundColor: "black" }}>
-              Rare Candy Candidates
-            </Button>
-          </Link>
+          <HomeLink link="/candy" title="Rare Candy Candidates" />
         </Grid>
         <Grid item>
-          <Link to="/teams" style={{ textDecoration: "none" }}>
-            <Button variant="contained" style={{ backgroundColor: "black" }}>
-              GBL Teams
-            </Button>
-          </Link>
+          <HomeLink link="/teams" title="GBL Teams" />
         </Grid>
         <Grid item>
-          <Link to="/elite" style={{ textDecoration: "none" }}>
-            <Button variant="contained" style={{ backgroundColor: "black" }}>
-              Elite Tms Candidates
-            </Button>
-          </Link>
+          <HomeLink link="/elite" title="Elite Tms Candidates" />
         </Grid>
       </Grid>
     </section>
