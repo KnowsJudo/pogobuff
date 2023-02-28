@@ -6,6 +6,7 @@ import { Button, Input, List, Tooltip } from "@material-ui/core";
 import rareC from "../../img/rare.webp";
 import xLC from "../../img/xl-candy.webp";
 import "./candy-page.css";
+import { BackButton } from "../../components/back-button/back-button";
 
 export const CandyPage = () => {
   const { userData, setUserData } = useContext(UserContext);
@@ -43,6 +44,7 @@ export const CandyPage = () => {
   return (
     <section className="candy-page">
       <NavBar />
+      <BackButton />
       <div className="current-candy">
         <h5>
           Current: <img height={100} width={100} src={rareC} alt="rare candy" />

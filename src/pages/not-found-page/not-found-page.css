@@ -1,0 +1,13 @@
+.not-found-info {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.not-found-page {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+}

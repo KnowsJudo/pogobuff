@@ -1,5 +1,18 @@
 import React from "react";
+import { BackButton } from "../../components/back-button/back-button";
+import { NavBar } from "../../components/nav-bar/nav-bar";
+import CatchingPokemonIcon from "@mui/icons-material/CatchingPokemon";
+import "./not-found-page.css";
 
 export const NotFoundPage: React.FC = () => {
-  return <h1>Page not found</h1>;
+  return (
+    <section className="not-found-page">
+      <NavBar />
+      <BackButton />
+      <div className="not-found-info">
+        <CatchingPokemonIcon fontSize="large" />
+        <h3>Page not found</h3>
+      </div>
+    </section>
+  );
 };

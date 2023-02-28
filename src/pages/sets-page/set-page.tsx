@@ -5,9 +5,8 @@ import { EloInfo } from "../../components/elo-info/elo-info";
 import { SetData } from "../../components/set-data/set-data";
 import { retainTieState, UserContext } from "../../context";
 import { NavBar } from "../../components/nav-bar/nav-bar";
-import { Link } from "react-router-dom";
-import Tooltip from "@mui/material/Tooltip";
-import UndoIcon from "@mui/icons-material/Undo";
+import { BackButton } from "../../components/back-button/back-button";
+import AddIcon from "@mui/icons-material/Add";
 import "./set-page.css";
 
 export const SetPage = () => {
@@ -32,26 +31,14 @@ export const SetPage = () => {
   return (
     <section className="set-page">
       <NavBar />
-      <Link
-        to="/"
-        style={{
-          margin: "1% 0 0 5%",
-          color: "black",
-        }}
-      >
-        <Tooltip title="Home">
-          <UndoIcon style={{ fontSize: "40px", margin: "auto" }} />
-        </Tooltip>
-      </Link>
+      <BackButton />
       <EloInfo />
       <SetData addTie={addTie} setAddTie={setAddTie} />
-      <Button
-        style={{ padding: "10px", margin: "auto 30% 15%" }}
-        variant="contained"
-        onClick={() => addSet()}
-      >
-        New Set
-      </Button>
+      <span className="add-set">
+        <Button style={{ color: "black" }} onClick={() => addSet()}>
+          <AddIcon /> &nbsp; New Set
+        </Button>
+      </span>
     </section>
   );
 };
