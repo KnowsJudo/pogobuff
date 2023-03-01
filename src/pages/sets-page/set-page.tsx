@@ -29,7 +29,21 @@ export const SetPage = () => {
     });
   };
 
-  const removeAllSets = () => {};
+  const removeAllSets = () => {
+    setAddTie([false]);
+    setUserData({
+      elo: { starting: 0, current: 0, change: 0, ending: 0 },
+      sets: [
+        {
+          wins: 0,
+          losses: 0,
+          ties: 0,
+        },
+      ],
+      candy: 0,
+      candyXL: 0,
+    });
+  };
 
   return (
     <section className="set-page">
@@ -37,19 +51,18 @@ export const SetPage = () => {
       <BackButton />
       <EloInfo />
       <SetData addTie={addTie} setAddTie={setAddTie} />
-      <span className="add-set">
-        <Button style={{ color: "black" }} onClick={() => addSet()}>
-          <AddIcon /> &nbsp; New Set
-        </Button>
-      </span>
-      <span className="remove-all">
-        <Button
-          style={{ color: "black", marginLeft: "auto" }}
-          onClick={() => removeAllSets()}
-        >
-          <SyncIcon /> &nbsp; Reset all
-        </Button>
-      </span>
+      <div className="set-options">
+        <span className="add-set">
+          <Button style={{ color: "black" }} onClick={() => addSet()}>
+            <AddIcon /> &nbsp; New Set
+          </Button>
+        </span>
+        <span className="remove-all">
+          <Button style={{ color: "#ff4d4d" }} onClick={() => removeAllSets()}>
+            <SyncIcon /> &nbsp; Reset all
+          </Button>
+        </span>
+      </div>
     </section>
   );
 };

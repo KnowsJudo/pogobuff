@@ -6,10 +6,17 @@
 
 .remove-all {
   display: flex;
+  margin: auto;
+}
+
+.set-options {
+  display: flex;
+  color: #ff4d4d;
 }
 
 .set-page {
   display: flex;
   flex-direction: column;
   flex: 1 1 auto;
+  background-color: white;
 }
