@@ -3,7 +3,12 @@ import { Button } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
 import { EloInfo } from "../../components/elo-info/elo-info";
 import { SetData } from "../../components/set-data/set-data";
-import { retainTieState, UserContext } from "../../context";
+import {
+  retainTieState,
+  startingSetData,
+  startingTieState,
+  UserContext,
+} from "../../context";
 import { NavBar } from "../../components/nav-bar/nav-bar";
 import { BackButton } from "../../components/back-button/back-button";
 import AddIcon from "@mui/icons-material/Add";
@@ -18,7 +23,7 @@ export const SetPage = () => {
     sessionStorage.setItem("Ties Added", JSON.stringify(addTie));
   }, [addTie]);
 
-  const addSet = () => {
+  const addSet: () => void = () => {
     setAddTie((prev: boolean[]) => [...prev, false]);
     setUserData((prev) => {
       return {
@@ -29,17 +34,11 @@ export const SetPage = () => {
     });
   };
 
-  const removeAllSets = () => {
-    setAddTie([false]);
+  const removeAllSets: () => void = () => {
+    setAddTie(startingTieState);
     setUserData({
       elo: { starting: 0, current: 0, change: 0, ending: 0 },
-      sets: [
-        {
-          wins: 0,
-          losses: 0,
-          ties: 0,
-        },
-      ],
+      sets: startingSetData,
       candy: 0,
       candyXL: 0,
     });
