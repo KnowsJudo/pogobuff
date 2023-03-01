@@ -53,7 +53,7 @@ export const SetData: React.FC<ISetData> = (props) => {
       {userData.sets.map((next, ind) => {
         return (
           <div key={ind} className="set-data-inner">
-            <h3>{`Set ${ind + 1}:`}</h3>
+            <h5>{`Set ${ind + 1}:`}</h5>
             <Scorer id={ind} score={next} addTie={props.addTie[ind]} />
             <span className="set-data-edit">
               {!props.addTie[ind] && (

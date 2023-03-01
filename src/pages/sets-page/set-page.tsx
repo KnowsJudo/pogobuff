@@ -7,6 +7,7 @@ import { retainTieState, UserContext } from "../../context";
 import { NavBar } from "../../components/nav-bar/nav-bar";
 import { BackButton } from "../../components/back-button/back-button";
 import AddIcon from "@mui/icons-material/Add";
+import SyncIcon from "@mui/icons-material/Sync";
 import "./set-page.css";
 
 export const SetPage = () => {
@@ -28,6 +29,8 @@ export const SetPage = () => {
     });
   };
 
+  const removeAllSets = () => {};
+
   return (
     <section className="set-page">
       <NavBar />
@@ -37,6 +40,14 @@ export const SetPage = () => {
       <span className="add-set">
         <Button style={{ color: "black" }} onClick={() => addSet()}>
           <AddIcon /> &nbsp; New Set
+        </Button>
+      </span>
+      <span className="remove-all">
+        <Button
+          style={{ color: "black", marginLeft: "auto" }}
+          onClick={() => removeAllSets()}
+        >
+          <SyncIcon /> &nbsp; Reset all
         </Button>
       </span>
     </section>

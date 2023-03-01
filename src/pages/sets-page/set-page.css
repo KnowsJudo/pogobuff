@@ -1,6 +1,11 @@
 .add-set {
   display: flex;
   margin: auto;
+  padding: 1em;
+}
+
+.remove-all {
+  display: flex;
 }
 
 .set-page {

@@ -11,7 +11,7 @@ export const NotFoundPage: React.FC = () => {
       <BackButton />
       <div className="not-found-info">
         <CatchingPokemonIcon fontSize="large" />
-        <h3>Page not found</h3>
+        <h5>Page Not Found</h5>
       </div>
     </section>
   );
