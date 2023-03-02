@@ -53,7 +53,7 @@ export const initialUserState: () => IUserState = () => {
       };
 };
 
-export const retrieveElo = () => {
+export const retrieveElo: () => boolean = () => {
   const stored = JSON.parse(sessionStorage.getItem("User Stats") as string);
   return stored.elo.starting ? true : false;
 };

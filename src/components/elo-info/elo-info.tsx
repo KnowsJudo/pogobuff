@@ -74,7 +74,7 @@ export const EloInfo = () => {
         )}
       </span>
       {eloEntered && <h6>Current est. ELO: {userData.elo.current} </h6>}
-      <h5>{`Record: ${totalScore()}`}</h5>
+      <h6>{`Record: ${totalScore()}`}</h6>
     </div>
   );
 };
