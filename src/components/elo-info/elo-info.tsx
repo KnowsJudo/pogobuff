@@ -16,6 +16,7 @@ export const EloInfo = () => {
   };
 
   const handleSubmit = () => {
+    //Api call here
     setEloEntered(true);
     setUserData((prev: IUserState) => {
       return {

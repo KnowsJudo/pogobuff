@@ -6,8 +6,15 @@ export interface ISet {
   ties: number;
 }
 
+export interface IElo {
+  starting: number;
+  current: number;
+  change: number;
+  ending: number;
+}
+
 export interface IUserState {
-  elo: { starting: number; current: number; change: number; ending: number };
+  elo: IElo;
   sets: ISet[];
   candy: number;
   candyXL: number;
