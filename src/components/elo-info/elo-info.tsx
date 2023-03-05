@@ -1,9 +1,11 @@
 import React from "react";
+import axios from "axios";
 import { Button, Input } from "@material-ui/core";
 import { useContext, useState } from "react";
 import { IUserState, retrieveElo, UserContext } from "../../context";
 import Tooltip from "@mui/material/Tooltip";
 import EditIcon from "@mui/icons-material/Edit";
+import { apiURL } from "../../helpers/api-url";
 import "./elo-info.css";
 
 export const EloInfo = () => {
@@ -15,21 +17,27 @@ export const EloInfo = () => {
     setElo(Number(e.target.value));
   };
 
-  const handleSubmit = () => {
-    //Api call here
-    setEloEntered(true);
-    setUserData((prev: IUserState) => {
-      return {
-        ...prev,
-        elo: {
-          starting: elo,
-          current: prev.elo.change && elo ? elo + prev.elo.change : elo,
-          change: prev.elo.change ? prev.elo.change : 0,
-          ending: prev.elo.ending ? prev.elo.ending : elo,
-        },
-        sets: [...prev.sets],
-      };
-    });
+  const handleSubmit = async () => {
+    try {
+      await axios.post(`${apiURL}/api/sets`, { elo: elo });
+      const data = await axios.get(`${apiURL}/api/sets`);
+      console.log(data);
+      setEloEntered(true);
+      setUserData((prev: IUserState) => {
+        return {
+          ...prev,
+          elo: {
+            starting: elo,
+            current: prev.elo.change && elo ? elo + prev.elo.change : elo,
+            change: prev.elo.change ? prev.elo.change : 0,
+            ending: prev.elo.ending ? prev.elo.ending : elo,
+          },
+          sets: [...prev.sets],
+        };
+      });
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const totalScore = () => {

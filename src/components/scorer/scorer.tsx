@@ -12,7 +12,6 @@ interface IScorer {
 
 export const Scorer: React.FC<IScorer> = (props) => {
   const { userData, setUserData } = useContext(UserContext);
-  console.log(props.addTie);
 
   const updateScore = (side: string) => {
     const newUserValues = [...userData.sets];
