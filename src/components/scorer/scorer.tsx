@@ -1,8 +1,9 @@
 import React from "react";
 import { useContext } from "react";
 import { ScoreButton } from "../score-button/score-button";
-import { ISet, IUserState, UserContext } from "../../context";
+import { UserContext } from "../../context";
 import { Stack } from "@mui/material";
+import { ISet, IUserState } from "../../types/elo";
 
 interface IScorer {
   id: number;

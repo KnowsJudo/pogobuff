@@ -1,24 +1,5 @@
 import { createContext } from "react";
-
-export interface ISet {
-  wins: number;
-  losses: number;
-  ties: number;
-}
-
-export interface IElo {
-  starting: number;
-  current: number;
-  change: number;
-  ending: number;
-}
-
-export interface IUserState {
-  elo: IElo;
-  sets: ISet[];
-  candy: number;
-  candyXL: number;
-}
+import { IUserState } from "./types/elo";
 
 export const startingSetData = [
   {

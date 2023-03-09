@@ -1,7 +1,8 @@
 import React from "react";
 import { Scorer } from "../scorer/scorer";
 import { useContext } from "react";
-import { IUserState, UserContext } from "../../context";
+import { UserContext } from "../../context";
+import { IUserState } from "../../types/elo";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Tooltip from "@mui/material/Tooltip";
 import GraphicEqIcon from "@mui/icons-material/GraphicEq";

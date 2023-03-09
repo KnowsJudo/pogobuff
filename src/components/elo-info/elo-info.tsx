@@ -2,10 +2,11 @@ import React from "react";
 import axios from "axios";
 import { Button, Input } from "@material-ui/core";
 import { useContext, useState } from "react";
-import { IUserState, retrieveElo, UserContext } from "../../context";
+import { retrieveElo, UserContext } from "../../context";
+import { apiURL } from "../../helpers/api-url";
+import { IUserState } from "../../types/elo";
 import Tooltip from "@mui/material/Tooltip";
 import EditIcon from "@mui/icons-material/Edit";
-import { apiURL } from "../../helpers/api-url";
 import "./elo-info.css";
 
 export const EloInfo = () => {

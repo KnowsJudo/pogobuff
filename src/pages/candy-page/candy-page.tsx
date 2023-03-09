@@ -1,12 +1,13 @@
 import React from "react";
 import { NavBar } from "../../components/nav-bar/nav-bar";
 import { useContext, useState } from "react";
-import { IUserState, UserContext } from "../../context";
+import { UserContext } from "../../context";
 import { Button, Input, List, Tooltip } from "@material-ui/core";
+import { BackButton } from "../../components/back-button/back-button";
+import { IUserState } from "../../types/elo";
 import rareC from "../../img/rare.webp";
 import xLC from "../../img/xl-candy.webp";
 import "./candy-page.css";
-import { BackButton } from "../../components/back-button/back-button";
 
 export const CandyPage = () => {
   const { userData, setUserData } = useContext(UserContext);
