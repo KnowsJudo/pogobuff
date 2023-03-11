@@ -75,7 +75,7 @@ export const CandyPage = () => {
             value={newCandidate}
           />
           <Tooltip title="Add to List">
-            <Button onClick={() => addNewCandidate()}>{"->"}</Button>
+            <Button onClick={() => addNewCandidate()}>{">"}</Button>
           </Tooltip>
         </span>
         {candidates.map((next, i) => {

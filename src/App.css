@@ -1,7 +1,7 @@
 .App {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  min-height: 100vh;
   overflow: auto;
   background-image: url("./img/background.avif");
   background-size: 80% 100%;
@@ -9,10 +9,12 @@
 
 .App-container {
   display: flex;
+  position: relative;
   flex-direction: column;
   margin: 0 15%;
   flex: 1 1 auto;
   background-color: white;
+  opacity: 0.9;
   height: 100vh;
   font-size: calc(10px + 2vmin);
   color: black;

@@ -7,6 +7,7 @@ import { initialUserState } from "./context";
 import { HomePage } from "./pages/home-page/home-page";
 import { CandyPage } from "./pages/candy-page/candy-page";
 import "./App.css";
+import { Footer } from "./components/footer/footer";
 
 const App = () => {
   const [userData, setUserData] = useState(() => initialUserState());
@@ -26,6 +27,7 @@ const App = () => {
               <Route path="/candy" element={<CandyPage />} />
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
+            <Footer />
           </HashRouter>
         </UserContext.Provider>
       </main>
