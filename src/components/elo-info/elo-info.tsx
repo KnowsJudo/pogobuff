@@ -5,12 +5,15 @@ import { useContext, useState } from "react";
 import { retrieveElo, UserContext } from "../../context";
 import { apiURL } from "../../helpers/api-url";
 import { IUserState } from "../../types/elo";
+import DoneIcon from "@mui/icons-material/Done";
 import Tooltip from "@mui/material/Tooltip";
 import EditIcon from "@mui/icons-material/Edit";
 import "./elo-info.css";
 
 export const EloInfo = () => {
   const { userData, setUserData } = useContext(UserContext);
+  const [name, setName] = useState<string>("");
+  const [nameEntered, setNameEntered] = useState(false);
   const [elo, setElo] = useState<number>(0);
   const [eloEntered, setEloEntered] = useState(() => retrieveElo());
 
@@ -18,7 +21,28 @@ export const EloInfo = () => {
     setElo(Number(e.target.value));
   };
 
-  const handleSubmit = async () => {
+  const submitName = async () => {
+    try {
+      await axios.post(`${apiURL}/api/sets`, { playername: name });
+      const data = await axios.get(`${apiURL}/api/sets`);
+      console.log(data);
+      setNameEntered(true);
+      setUserData((prev: IUserState) => {
+        return {
+          ...prev,
+          elo: {
+            ...prev.elo,
+            playername: name,
+          },
+          sets: [...prev.sets],
+        };
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const submitElo = async () => {
     try {
       await axios.post(`${apiURL}/api/sets`, { elo: elo });
       const data = await axios.get(`${apiURL}/api/sets`);
@@ -54,7 +78,35 @@ export const EloInfo = () => {
   return (
     <div className="current-stats">
       <span className="elo-info">
-        <h6>Starting ELO:&nbsp;</h6>
+        <h6>Playername:&nbsp;</h6>
+        {!nameEntered ? (
+          <span className="enter-elo">
+            <Input
+              value={name}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                setName(e.target.value)
+              }
+            />
+            <Button onClick={() => submitName()}>
+              <DoneIcon />
+            </Button>
+          </span>
+        ) : (
+          <span className="edit-elo">
+            <h6>{userData.elo.playername}</h6>
+            <Tooltip title="Edit">
+              <EditIcon
+                onClick={() => setNameEntered(false)}
+                sx={{
+                  fontSize: 14,
+                  marginLeft: "25%",
+                  "&:hover": { cursor: "pointer" },
+                }}
+              />
+            </Tooltip>
+          </span>
+        )}
+        <h6>Starting Elo:&nbsp;</h6>
         {!eloEntered ? (
           <span className="enter-elo">
             <Input
@@ -65,7 +117,9 @@ export const EloInfo = () => {
                 handleElo(e)
               }
             />
-            <Button onClick={() => handleSubmit()}>Submit</Button>
+            <Button onClick={() => submitElo()}>
+              <DoneIcon />
+            </Button>
           </span>
         ) : (
           <span className="edit-elo">
