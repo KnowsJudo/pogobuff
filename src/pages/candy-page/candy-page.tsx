@@ -2,7 +2,7 @@ import React from "react";
 import { NavBar } from "../../components/nav-bar/nav-bar";
 import { useContext, useState } from "react";
 import { UserContext } from "../../context";
-import { Button, Input, List, Tooltip } from "@material-ui/core";
+import { Button, Input, List, ListItem, Tooltip } from "@material-ui/core";
 import { BackButton } from "../../components/back-button/back-button";
 import { IUserState } from "../../types/elo";
 import rareC from "../../img/rare.webp";
@@ -67,8 +67,8 @@ export const CandyPage = () => {
         </h5>
       </div>
       <div className="candy-pokes">
-        <span>
-          <h5>Candy Priorities:</h5>
+        <span className="candly-list">
+          <h6>Candy Priorities:</h6>
           <Input
             type="string"
             onChange={(e) => handleCandidate(e)}
@@ -79,7 +79,11 @@ export const CandyPage = () => {
           </Tooltip>
         </span>
         {candidates.map((next, i) => {
-          return <List key={i}>{next}</List>;
+          return (
+            <List key={i}>
+              <ListItem>{next}</ListItem>
+            </List>
+          );
         })}
       </div>
     </section>
