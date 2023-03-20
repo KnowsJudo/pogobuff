@@ -6,8 +6,8 @@ import { UserContext } from "./context";
 import { initialUserState } from "./context";
 import { HomePage } from "./pages/home-page/home-page";
 import { CandyPage } from "./pages/candy-page/candy-page";
-import "./App.css";
 import { Footer } from "./components/footer/footer";
+import "./App.css";
 
 const App = () => {
   const [userData, setUserData] = useState(() => initialUserState());

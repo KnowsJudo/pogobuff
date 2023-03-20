@@ -8,6 +8,7 @@ import { IUserState } from "../../types/elo";
 import DoneIcon from "@mui/icons-material/Done";
 import Tooltip from "@mui/material/Tooltip";
 import EditIcon from "@mui/icons-material/Edit";
+import Ace from "../../img/ace.png";
 import "./elo-info.css";
 
 export const EloInfo = () => {
@@ -106,9 +107,9 @@ export const EloInfo = () => {
             </Tooltip>
           </span>
         )}
-        <h6>Starting Elo:&nbsp;</h6>
         {!eloEntered ? (
           <span className="enter-elo">
+            <h6>Starting Elo:&nbsp;</h6>
             <Input
               type="number"
               value={elo === 0 ? "" : elo}
@@ -123,6 +124,7 @@ export const EloInfo = () => {
           </span>
         ) : (
           <span className="edit-elo">
+            <img src={Ace} height={40} width={40} alt="ace rank badge" />
             <h6>{userData.elo.starting}</h6>
             <Tooltip title="Edit">
               <EditIcon
