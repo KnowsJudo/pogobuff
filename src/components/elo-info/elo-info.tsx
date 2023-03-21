@@ -9,6 +9,8 @@ import DoneIcon from "@mui/icons-material/Done";
 import Tooltip from "@mui/material/Tooltip";
 import EditIcon from "@mui/icons-material/Edit";
 import Ace from "../../img/ace.png";
+import Veteran from "../../img/veteran.png";
+import Expert from "../../img/expert.png";
 import "./elo-info.css";
 
 export const EloInfo = () => {
@@ -63,6 +65,17 @@ export const EloInfo = () => {
       });
     } catch (error) {
       console.error(error);
+    }
+  };
+
+  const calcBadge = (rank: number) => {
+    switch (true) {
+      case rank < 2500:
+        return Ace;
+      case rank < 2750:
+        return Veteran;
+      default:
+        return Expert;
     }
   };
 
@@ -124,7 +137,12 @@ export const EloInfo = () => {
           </span>
         ) : (
           <span className="edit-elo">
-            <img src={Ace} height={40} width={40} alt="ace rank badge" />
+            <img
+              src={calcBadge(elo)}
+              height={40}
+              width={40}
+              alt="ace rank badge"
+            />
             <h6>{userData.elo.starting}</h6>
             <Tooltip title="Edit">
               <EditIcon
