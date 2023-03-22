@@ -11,6 +11,7 @@ import {
 } from "../../context";
 import { NavBar } from "../../components/nav-bar/nav-bar";
 import { BackButton } from "../../components/back-button/back-button";
+import { IUserState } from "../../types/elo";
 import AddIcon from "@mui/icons-material/Add";
 import SyncIcon from "@mui/icons-material/Sync";
 import "./set-page.css";
@@ -36,11 +37,13 @@ export const SetPage = () => {
 
   const removeAllSets: () => void = () => {
     setAddTie(startingTieState);
-    setUserData({
-      elo: { starting: 0, current: 0, change: 0, ending: 0 },
-      sets: startingSetData,
-      candy: 0,
-      candyXL: 0,
+    setUserData((prev: IUserState) => {
+      return {
+        elo: { ...prev.elo, starting: 0, current: 0, change: 0, ending: 0 },
+        sets: startingSetData,
+        candy: 0,
+        candyXL: 0,
+      };
     });
   };
 

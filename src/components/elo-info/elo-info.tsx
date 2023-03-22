@@ -11,6 +11,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import Ace from "../../img/ace.png";
 import Veteran from "../../img/veteran.png";
 import Expert from "../../img/expert.png";
+import Legend from "../../img/legend.png";
 import "./elo-info.css";
 
 export const EloInfo = () => {
@@ -55,6 +56,7 @@ export const EloInfo = () => {
         return {
           ...prev,
           elo: {
+            ...prev.elo,
             starting: elo,
             current: prev.elo.change && elo ? elo + prev.elo.change : elo,
             change: prev.elo.change ? prev.elo.change : 0,
@@ -74,8 +76,10 @@ export const EloInfo = () => {
         return Ace;
       case rank < 2750:
         return Veteran;
-      default:
+      case rank < 3000:
         return Expert;
+      default:
+        return Legend;
     }
   };
 
@@ -91,73 +95,84 @@ export const EloInfo = () => {
 
   return (
     <div className="current-stats">
-      <span className="elo-info">
-        <h6>Playername:&nbsp;</h6>
-        {!nameEntered ? (
-          <span className="enter-elo">
-            <Input
-              value={name}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                setName(e.target.value)
-              }
-            />
-            <Button onClick={() => submitName()}>
-              <DoneIcon />
-            </Button>
-          </span>
-        ) : (
-          <span className="edit-elo">
-            <h6>{userData.elo.playername}</h6>
-            <Tooltip title="Edit">
-              <EditIcon
-                onClick={() => setNameEntered(false)}
-                sx={{
-                  fontSize: 14,
-                  marginLeft: "25%",
-                  "&:hover": { cursor: "pointer" },
-                }}
-              />
-            </Tooltip>
-          </span>
+      <div className="elo-display">
+        {eloEntered && (
+          <img
+            src={calcBadge(elo)}
+            height={40}
+            width={40}
+            alt="ace rank badge"
+          />
         )}
-        {!eloEntered ? (
-          <span className="enter-elo">
-            <h6>Starting Elo:&nbsp;</h6>
-            <Input
-              type="number"
-              value={elo === 0 ? "" : elo}
-              placeholder=" #"
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                handleElo(e)
-              }
-            />
-            <Button onClick={() => submitElo()}>
-              <DoneIcon />
-            </Button>
-          </span>
-        ) : (
-          <span className="edit-elo">
-            <img
-              src={calcBadge(elo)}
-              height={40}
-              width={40}
-              alt="ace rank badge"
-            />
-            <h6>{userData.elo.starting}</h6>
-            <Tooltip title="Edit">
-              <EditIcon
-                onClick={() => setEloEntered(false)}
-                sx={{
-                  fontSize: 14,
-                  marginLeft: "25%",
-                  "&:hover": { cursor: "pointer" },
-                }}
+        <div className="elo-info">
+          {!nameEntered ? (
+            <span className="enter-elo">
+              <h6>Playername:&nbsp;</h6>
+              <Input
+                value={name}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setName(e.target.value)
+                }
               />
-            </Tooltip>
-          </span>
-        )}
-      </span>
-      {eloEntered && <h6>Current est. ELO: {userData.elo.current} </h6>}
+              <Button onClick={() => submitName()}>
+                <DoneIcon />
+              </Button>
+            </span>
+          ) : (
+            <span className="edit-elo">
+              <Tooltip title="Playername">
+                <h6>{userData.elo.playername}</h6>
+              </Tooltip>
+              <Tooltip title="Edit">
+                <EditIcon
+                  onClick={() => setNameEntered(false)}
+                  sx={{
+                    fontSize: 14,
+                    marginLeft: "25%",
+                    "&:hover": { cursor: "pointer" },
+                  }}
+                />
+              </Tooltip>
+            </span>
+          )}
+
+          {!eloEntered ? (
+            <span className="enter-elo">
+              <h6>Starting Elo:&nbsp;</h6>
+              <Input
+                type="number"
+                value={elo === 0 ? "" : elo}
+                placeholder=" #"
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  handleElo(e)
+                }
+              />
+              <Button onClick={() => submitElo()}>
+                <DoneIcon />
+              </Button>
+            </span>
+          ) : (
+            <span className="edit-elo">
+              <h6>{userData.elo.starting}</h6>
+              <Tooltip title="Edit">
+                <EditIcon
+                  onClick={() => setEloEntered(false)}
+                  sx={{
+                    fontSize: 14,
+                    marginLeft: "25%",
+                    "&:hover": { cursor: "pointer" },
+                  }}
+                />
+              </Tooltip>
+            </span>
+          )}
+        </div>
+      </div>
+      {eloEntered && (
+        <Tooltip title="Rating">
+          <h6>Estimated Rank {userData.elo.current} </h6>
+        </Tooltip>
+      )}
       <h6>{`Record: ${totalScore()}`}</h6>
     </div>
   );

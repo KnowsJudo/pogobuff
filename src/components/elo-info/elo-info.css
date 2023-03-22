@@ -1,5 +1,6 @@
 h6 {
   margin: 0;
+  font-weight: 100;
 }
 
 .current-stats {
@@ -8,10 +9,15 @@ h6 {
   align-items: center;
 }
 
+.elo-display {
+  display: flex;
+  align-items: center;
+}
+
 .elo-info {
   display: flex;
   flex-direction: column;
-  padding-bottom: 25px;
+  padding: 0 0 25px 10px;
 }
 
 .enter-elo {

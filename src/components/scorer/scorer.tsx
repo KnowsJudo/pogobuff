@@ -35,6 +35,7 @@ export const Scorer: React.FC<IScorer> = (props) => {
       return {
         ...prev,
         elo: {
+          ...prev.elo,
           starting: prev.elo.starting,
           current: !prev.elo.starting
             ? 0

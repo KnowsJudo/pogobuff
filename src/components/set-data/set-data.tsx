@@ -39,6 +39,7 @@ export const SetData: React.FC<ISetData> = (props) => {
       return {
         ...prev,
         elo: {
+          ...prev.elo,
           starting: prev.elo.starting,
           current: prev.elo.current - totalChange,
           change: prev.elo.change - totalChange,
