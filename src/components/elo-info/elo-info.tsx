@@ -153,7 +153,9 @@ export const EloInfo = () => {
             </span>
           ) : (
             <span className="edit-elo">
-              <h6>{userData.elo.starting}</h6>
+              <Tooltip title="Starting rank">
+                <h6>{userData.elo.starting}</h6>
+              </Tooltip>
               <Tooltip title="Edit">
                 <EditIcon
                   onClick={() => setEloEntered(false)}
@@ -168,11 +170,7 @@ export const EloInfo = () => {
           )}
         </div>
       </div>
-      {eloEntered && (
-        <Tooltip title="Rating">
-          <h6>Estimated Rank {userData.elo.current} </h6>
-        </Tooltip>
-      )}
+      {eloEntered && <h6>Estimated Rank {userData.elo.current} </h6>}
       <h6>{`Record: ${totalScore()}`}</h6>
     </div>
   );
