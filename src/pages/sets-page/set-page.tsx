@@ -13,6 +13,7 @@ import { NavBar } from "../../components/nav-bar/nav-bar";
 import { BackButton } from "../../components/back-button/back-button";
 import { IUserState } from "../../types/elo";
 import AddIcon from "@mui/icons-material/Add";
+import CatchingPokemonIcon from "@mui/icons-material/CatchingPokemon";
 import SyncIcon from "@mui/icons-material/Sync";
 import "./set-page.css";
 
@@ -29,8 +30,21 @@ export const SetPage = () => {
     setUserData((prev) => {
       return {
         ...prev,
-        elo: { ...prev.elo },
         sets: [...prev.sets, { wins: 0, losses: 0, ties: 0 }],
+      };
+    });
+  };
+
+  const addBattleDay: () => void = () => {
+    setUserData((prev) => {
+      const sets = prev.sets.slice(0, 19);
+      while (sets.length < 19) {
+        sets.push({ wins: 0, losses: 0, ties: 0 });
+      }
+      sets.push({ wins: 0, losses: 0, ties: 0 });
+      return {
+        ...prev,
+        sets,
       };
     });
   };
@@ -39,10 +53,9 @@ export const SetPage = () => {
     setAddTie(startingTieState);
     setUserData((prev: IUserState) => {
       return {
+        ...prev,
         elo: { ...prev.elo, starting: 0, current: 0, change: 0, ending: 0 },
         sets: startingSetData,
-        candy: 0,
-        candyXL: 0,
       };
     });
   };
@@ -57,6 +70,11 @@ export const SetPage = () => {
         <span className="add-set">
           <Button style={{ color: "black" }} onClick={() => addSet()}>
             <AddIcon /> &nbsp; New Set
+          </Button>
+        </span>
+        <span className="battle-day">
+          <Button style={{ color: "black" }} onClick={() => addBattleDay()}>
+            <CatchingPokemonIcon /> &nbsp; Go Battle Day
           </Button>
         </span>
         <span className="remove-all">

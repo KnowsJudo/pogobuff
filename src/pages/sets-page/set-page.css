@@ -4,6 +4,11 @@
   padding: 1em;
 }
 
+.battle-day {
+  display: flex;
+  margin: auto;
+}
+
 .remove-all {
   display: flex;
   margin: auto;
