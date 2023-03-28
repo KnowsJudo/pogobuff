@@ -8,6 +8,7 @@ import { IUserState } from "../../types/elo";
 import DoneIcon from "@mui/icons-material/Done";
 import Tooltip from "@mui/material/Tooltip";
 import EditIcon from "@mui/icons-material/Edit";
+import Rank20 from "../../img/20.png";
 import Ace from "../../img/ace.png";
 import Veteran from "../../img/veteran.png";
 import Expert from "../../img/expert.png";
@@ -72,6 +73,8 @@ export const EloInfo = () => {
 
   const calcBadge = (rank: number) => {
     switch (true) {
+      case rank < 2000:
+        return Rank20;
       case rank < 2500:
         return Ace;
       case rank < 2750:
