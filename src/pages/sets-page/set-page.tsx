@@ -17,7 +17,7 @@ import CatchingPokemonIcon from "@mui/icons-material/CatchingPokemon";
 import SyncIcon from "@mui/icons-material/Sync";
 import "./set-page.css";
 
-export const SetPage = () => {
+export const SetPage: React.FC = () => {
   const { setUserData } = useContext(UserContext);
   const [addTie, setAddTie] = useState(() => retainTieState());
 

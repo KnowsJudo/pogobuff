@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./nav-bar.css";
 
-export const NavBar = () => {
+export const NavBar: React.FC = () => {
   return (
     <nav className="nav-bar">
       <ul className="nav-list">
@@ -11,6 +11,9 @@ export const NavBar = () => {
         </Link>
         <Link to="/sets" style={{ textDecoration: "none", color: "white" }}>
           <li>Sets</li>
+        </Link>
+        <Link to="/teams" style={{ textDecoration: "none", color: "white" }}>
+          <li>Teams</li>
         </Link>
         <Link to="/candy" style={{ textDecoration: "none", color: "white" }}>
           <li>Rare Candy</li>

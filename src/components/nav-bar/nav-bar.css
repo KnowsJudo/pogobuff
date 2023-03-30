@@ -16,3 +16,7 @@ li {
   list-style-type: none;
   font-size: 16px;
 }
+
+li:hover {
+  opacity: 0.9;
+}

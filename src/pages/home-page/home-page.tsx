@@ -5,7 +5,7 @@ import heading from "../../img/pogo.png";
 import HorizontalRuleRoundedIcon from "@mui/icons-material/HorizontalRuleRounded";
 import "./home-page.css";
 
-export const HomePage = () => {
+export const HomePage: React.FC = () => {
   return (
     <section className="home-container">
       <img src={heading} alt="pogobuff" className="pogobuff-heading" />
@@ -21,10 +21,10 @@ export const HomePage = () => {
           <HomeLink link="/sets" title="Gbl Sets Tracker" />
         </Grid>
         <Grid item>
-          <HomeLink link="/candy" title="Rare Candy Candidates" />
+          <HomeLink link="/teams" title="GBL Teams" />
         </Grid>
         <Grid item>
-          <HomeLink link="/teams" title="GBL Teams" />
+          <HomeLink link="/candy" title="Rare Candy Candidates" />
         </Grid>
         <Grid item>
           <HomeLink link="/elite" title="Elite Tms Candidates" />

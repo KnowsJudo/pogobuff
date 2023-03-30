@@ -8,8 +8,9 @@ import { HomePage } from "./pages/home-page/home-page";
 import { CandyPage } from "./pages/candy-page/candy-page";
 import { Footer } from "./components/footer/footer";
 import "./App.css";
+import { TeamsPage } from "./pages/teams-page/teams-page";
 
-const App = () => {
+const App: React.FC = () => {
   const [userData, setUserData] = useState(() => initialUserState());
 
   useEffect(() => {
@@ -24,6 +25,7 @@ const App = () => {
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/sets" element={<SetPage />} />
+              <Route path="/teams" element={<TeamsPage />} />
               <Route path="/candy" element={<CandyPage />} />
               <Route path="*" element={<NotFoundPage />} />
             </Routes>

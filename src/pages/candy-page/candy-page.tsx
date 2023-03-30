@@ -13,7 +13,7 @@ import rareC from "../../img/rare.webp";
 import xLC from "../../img/xl-candy.webp";
 import "./candy-page.css";
 
-export const CandyPage = () => {
+export const CandyPage: React.FC = () => {
   const { userData, setUserData } = useContext(UserContext);
   const [name, setName] = useState<string>("");
   const [nameEntered, setNameEntered] = useState(false);
