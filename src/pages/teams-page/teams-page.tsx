@@ -1,17 +1,26 @@
 import React, { useState } from "react";
 import {
+  Button,
   FormControl,
   InputLabel,
   MenuItem,
   Select,
   Table,
+  TableHead,
+  TableRow,
 } from "@mui/material";
 import { BackButton } from "../../components/back-button/back-button";
 import { NavBar } from "../../components/nav-bar/nav-bar";
+import { TableCell } from "@material-ui/core";
+import AddIcon from "@mui/icons-material/Add";
 import "./teams-page.css";
 
 export const TeamsPage: React.FC = () => {
   const [league, setLeague] = useState("");
+
+  const addTeam: () => void = () => {
+    console.log("add");
+  };
 
   return (
     <section className="teams-page">
@@ -31,7 +40,27 @@ export const TeamsPage: React.FC = () => {
           </Select>
         </FormControl>
       </div>
-      <div></div>
+      <div className="teams-list">
+        <span className="teams-head">
+          {league}
+          <Button
+            onClick={() => addTeam()}
+            style={{ marginLeft: "auto", color: "#11f32f" }}
+          >
+            <AddIcon />
+            New
+          </Button>
+        </span>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>Lead</TableCell>
+              <TableCell>Switch</TableCell>
+              <TableCell>Closer</TableCell>
+            </TableRow>
+          </TableHead>
+        </Table>
+      </div>
     </section>
   );
 };

@@ -1,3 +1,12 @@
 .league-select {
   display: flex;
 }
+
+.teams-head {
+  display: flex;
+  padding: 20px;
+}
+
+.teams-list {
+  padding: 10px 40px;
+}
