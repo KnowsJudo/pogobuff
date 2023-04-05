@@ -15,11 +15,28 @@ import { TableCell } from "@material-ui/core";
 import AddIcon from "@mui/icons-material/Add";
 import "./teams-page.css";
 
+interface ITeam {
+  lead: string;
+  switch: string;
+  closer: string;
+}
+interface INextTeam {
+  lead: boolean;
+  switch: boolean;
+  closer: boolean;
+}
+
 export const TeamsPage: React.FC = () => {
-  const [league, setLeague] = useState("");
+  const [league, setLeague] = useState<string>("");
+  const [nextTeam, setNextTeam] = useState<INextTeam>({
+    lead: false,
+    switch: false,
+    closer: false,
+  });
+  const [teams, setTeams] = useState<ITeam[]>([]);
 
   const addTeam: () => void = () => {
-    console.log("add");
+    setNextTeam({ lead: true, switch: true, closer: true });
   };
 
   return (
