@@ -33,7 +33,9 @@ export const TeamsPage: React.FC = () => {
     switch: false,
     closer: false,
   });
-  const [teams, setTeams] = useState<ITeam[]>([]);
+  const [teams, setTeams] = useState<ITeam[]>([
+    { lead: "Araquanid", switch: "Cradily", closer: "Ferrothorn" },
+  ]);
 
   const addTeam: () => void = () => {
     setNextTeam({ lead: true, switch: true, closer: true });
@@ -71,9 +73,26 @@ export const TeamsPage: React.FC = () => {
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>Lead</TableCell>
-              <TableCell>Switch</TableCell>
-              <TableCell>Closer</TableCell>
+              <TableCell>
+                <b>Lead</b>
+              </TableCell>
+              <TableCell>
+                <b>Switch</b>
+              </TableCell>
+              <TableCell>
+                <b>Closer</b>
+              </TableCell>
+            </TableRow>
+            <TableRow style={{ borderBottom: "none" }}>
+              {teams.map((next) => {
+                return (
+                  <>
+                    <TableCell>{next.lead}</TableCell>
+                    <TableCell>{next.switch}</TableCell>
+                    <TableCell>{next.closer}</TableCell>
+                  </>
+                );
+              })}
             </TableRow>
           </TableHead>
         </Table>
