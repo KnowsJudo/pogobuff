@@ -28,13 +28,15 @@ interface INextTeam {
   closer: boolean;
 }
 
+const initialTeams = {
+  lead: "",
+  switch: "",
+  closer: "",
+};
+
 export const TeamsPage: React.FC = () => {
   const [league, setLeague] = useState<string>("");
-  const [nextTeam, setNextTeam] = useState<ITeam>({
-    lead: "",
-    switch: "",
-    closer: "",
-  });
+  const [nextTeam, setNextTeam] = useState<ITeam>(initialTeams);
   const [editNext, setEditNext] = useState<INextTeam>({
     lead: false,
     switch: false,
@@ -49,9 +51,15 @@ export const TeamsPage: React.FC = () => {
   };
 
   const addTeamToList: () => void = () => {
+    const keys = Object.values(nextTeam);
+    if (keys.some((next) => !next)) {
+      console.log("Please enter 3 pokemon");
+      return;
+    }
     setTeams((prev) => {
       return [...prev, nextTeam];
     });
+    setNextTeam(initialTeams);
   };
 
   return (
@@ -77,7 +85,10 @@ export const TeamsPage: React.FC = () => {
           {league}
           <Button
             onClick={() => addTeam()}
-            style={{ color: "#11f32f", marginLeft: "auto" }}
+            color="secondary"
+            size="small"
+            style={{ marginLeft: "auto" }}
+            variant="outlined"
           >
             <AddIcon />
             New
@@ -96,62 +107,62 @@ export const TeamsPage: React.FC = () => {
                 <b>Closer</b>
               </TableCell>
             </TableRow>
-            <TableRow style={{ borderBottom: "none" }}>
-              {teams.map((next) => {
-                return (
-                  <>
-                    <TableCell>{next.lead}</TableCell>
-                    <TableCell>{next.switch}</TableCell>
-                    <TableCell>{next.closer}</TableCell>
-                  </>
-                );
-              })}
-            </TableRow>
-            <TableRow>
-              {editNext.lead && (
-                <TableCell>
-                  <Input
-                    value={nextTeam.lead}
-                    onChange={(e) =>
-                      setNextTeam((prev) => {
-                        return { ...prev, lead: e.target.value };
-                      })
-                    }
-                  />
-                </TableCell>
-              )}
-              {editNext.switch && (
-                <TableCell>
-                  <Input
-                    value={nextTeam.switch}
-                    onChange={(e) =>
-                      setNextTeam((prev) => {
-                        return { ...prev, switch: e.target.value };
-                      })
-                    }
-                  />
-                </TableCell>
-              )}
-              {editNext.closer && (
-                <TableCell>
-                  <Input
-                    value={nextTeam.closer}
-                    onChange={(e) =>
-                      setNextTeam((prev) => {
-                        return { ...prev, closer: e.target.value };
-                      })
-                    }
-                  />
-                  <Button
-                    style={{ color: "black" }}
-                    onClick={() => addTeamToList()}
-                  >
-                    <DoneIcon />
-                  </Button>
-                </TableCell>
-              )}
-            </TableRow>
           </TableHead>
+
+          {teams.map((next) => {
+            return (
+              <TableRow>
+                <TableCell>{next.lead}</TableCell>
+                <TableCell>{next.switch}</TableCell>
+                <TableCell>{next.closer}</TableCell>
+              </TableRow>
+            );
+          })}
+
+          <TableRow>
+            {editNext.lead && (
+              <TableCell>
+                <Input
+                  value={nextTeam.lead}
+                  onChange={(e) =>
+                    setNextTeam((prev) => {
+                      return { ...prev, lead: e.target.value };
+                    })
+                  }
+                />
+              </TableCell>
+            )}
+            {editNext.switch && (
+              <TableCell>
+                <Input
+                  value={nextTeam.switch}
+                  onChange={(e) =>
+                    setNextTeam((prev) => {
+                      return { ...prev, switch: e.target.value };
+                    })
+                  }
+                />
+              </TableCell>
+            )}
+            {editNext.closer && (
+              <TableCell>
+                <Input
+                  value={nextTeam.closer}
+                  onChange={(e) =>
+                    setNextTeam((prev) => {
+                      return { ...prev, closer: e.target.value };
+                    })
+                  }
+                />
+                <Button
+                  style={{ color: "black" }}
+                  onClick={() => addTeamToList()}
+                >
+                  <DoneIcon />
+                </Button>
+              </TableCell>
+            )}
+          </TableRow>
         </Table>
       </div>
     </section>
