@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
+  CircularProgress,
   Button,
   FormControl,
   Input,
@@ -16,6 +17,9 @@ import { NavBar } from "../../components/nav-bar/nav-bar";
 import AddIcon from "@mui/icons-material/Add";
 import DoneIcon from "@mui/icons-material/Done";
 import "./teams-page.css";
+import axios from "axios";
+import { apiURL } from "../../helpers/api-url";
+import { TableBody } from "@material-ui/core";
 
 interface ITeam {
   lead: string;
@@ -47,6 +51,7 @@ export const TeamsPage: React.FC = () => {
   const [teams, setTeams] = useState<ITeam[]>([
     { lead: "Araquanid", switch: "Cradily", closer: "Ferrothorn" },
   ]);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const addTeam: () => void = () => {
     setEditNext({ lead: true, switch: true, closer: true });
@@ -64,6 +69,20 @@ export const TeamsPage: React.FC = () => {
     setNextTeam(initialTeams);
     setEditNext(initialEdit);
   };
+
+  const selectLeague: () => void = async () => {
+    try {
+      const data = await axios.get(`${apiURL}/api/teams`);
+      const teams = data.data[league];
+      setTeams(teams);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    selectLeague();
+  }, [league]);
 
   return (
     <section className="teams-page">
@@ -83,6 +102,7 @@ export const TeamsPage: React.FC = () => {
           </Select>
         </FormControl>
       </div>
+      {loading && <CircularProgress style={{ margin: "auto" }} />}
       {league && (
         <div className="teams-list">
           <span className="teams-head">
@@ -112,61 +132,62 @@ export const TeamsPage: React.FC = () => {
                 </TableCell>
               </TableRow>
             </TableHead>
+            <TableBody>
+              {teams.map((next, i) => {
+                return (
+                  <TableRow key={i}>
+                    <TableCell>{next.lead}</TableCell>
+                    <TableCell>{next.switch}</TableCell>
+                    <TableCell>{next.closer}</TableCell>
+                  </TableRow>
+                );
+              })}
 
-            {teams.map((next) => {
-              return (
-                <TableRow>
-                  <TableCell>{next.lead}</TableCell>
-                  <TableCell>{next.switch}</TableCell>
-                  <TableCell>{next.closer}</TableCell>
-                </TableRow>
-              );
-            })}
-
-            <TableRow>
-              {editNext.lead && (
-                <TableCell>
-                  <Input
-                    value={nextTeam.lead}
-                    onChange={(e) =>
-                      setNextTeam((prev) => {
-                        return { ...prev, lead: e.target.value };
-                      })
-                    }
-                  />
-                </TableCell>
-              )}
-              {editNext.switch && (
-                <TableCell>
-                  <Input
-                    value={nextTeam.switch}
-                    onChange={(e) =>
-                      setNextTeam((prev) => {
-                        return { ...prev, switch: e.target.value };
-                      })
-                    }
-                  />
-                </TableCell>
-              )}
-              {editNext.closer && (
-                <TableCell>
-                  <Input
-                    value={nextTeam.closer}
-                    onChange={(e) =>
-                      setNextTeam((prev) => {
-                        return { ...prev, closer: e.target.value };
-                      })
-                    }
-                  />
-                  <Button
-                    style={{ color: "black" }}
-                    onClick={() => addTeamToList()}
-                  >
-                    <DoneIcon />
-                  </Button>
-                </TableCell>
-              )}
-            </TableRow>
+              <TableRow>
+                {editNext.lead && (
+                  <TableCell>
+                    <Input
+                      value={nextTeam.lead}
+                      onChange={(e) =>
+                        setNextTeam((prev) => {
+                          return { ...prev, lead: e.target.value };
+                        })
+                      }
+                    />
+                  </TableCell>
+                )}
+                {editNext.switch && (
+                  <TableCell>
+                    <Input
+                      value={nextTeam.switch}
+                      onChange={(e) =>
+                        setNextTeam((prev) => {
+                          return { ...prev, switch: e.target.value };
+                        })
+                      }
+                    />
+                  </TableCell>
+                )}
+                {editNext.closer && (
+                  <TableCell>
+                    <Input
+                      value={nextTeam.closer}
+                      onChange={(e) =>
+                        setNextTeam((prev) => {
+                          return { ...prev, closer: e.target.value };
+                        })
+                      }
+                    />
+                    <Button
+                      style={{ color: "black" }}
+                      onClick={() => addTeamToList()}
+                    >
+                      <DoneIcon />
+                    </Button>
+                  </TableCell>
+                )}
+              </TableRow>
+            </TableBody>
           </Table>
         </div>
       )}
