@@ -2,6 +2,10 @@
   display: flex;
 }
 
+.load-box {
+  display: flex;
+}
+
 .teams-head {
   display: flex;
   padding: 20px;

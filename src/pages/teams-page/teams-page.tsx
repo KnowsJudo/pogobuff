@@ -70,17 +70,17 @@ export const TeamsPage: React.FC = () => {
     setEditNext(initialEdit);
   };
 
-  const selectLeague: () => void = async () => {
-    try {
-      const data = await axios.get(`${apiURL}/api/teams`);
-      const teams = data.data[league];
-      setTeams(teams);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   useEffect(() => {
+    const selectLeague: () => void = async () => {
+      setLoading(true);
+      try {
+        const data = await axios.get(`${apiURL}/api/teams`);
+        const teams = data.data[league];
+        setTeams(teams);
+      } catch (error) {
+        console.error(error);
+      }
+    };
     selectLeague();
   }, [league]);
 
@@ -102,7 +102,9 @@ export const TeamsPage: React.FC = () => {
           </Select>
         </FormControl>
       </div>
-      {loading && <CircularProgress style={{ margin: "auto" }} />}
+      <div className="load-box">
+        {loading && <CircularProgress style={{ margin: "auto" }} />}
+      </div>
       {league && (
         <div className="teams-list">
           <span className="teams-head">
