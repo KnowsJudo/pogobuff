@@ -77,8 +77,10 @@ export const TeamsPage: React.FC = () => {
         const data = await axios.get(`${apiURL}/api/teams`);
         const teams = data.data[league];
         setTeams(teams);
+        setLoading(false);
       } catch (error) {
         console.error(error);
+        setLoading(false);
       }
     };
     selectLeague();
@@ -105,7 +107,7 @@ export const TeamsPage: React.FC = () => {
       <div className="load-box">
         {loading && <CircularProgress style={{ margin: "auto" }} />}
       </div>
-      {league && (
+      {league && !loading && (
         <div className="teams-list">
           <span className="teams-head">
             {league}

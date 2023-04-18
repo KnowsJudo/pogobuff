@@ -4,6 +4,7 @@
 
 .load-box {
   display: flex;
+  padding: 20px;
 }
 
 .teams-head {
