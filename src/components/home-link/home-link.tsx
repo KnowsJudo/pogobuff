@@ -10,7 +10,11 @@ interface IHomeLink {
 export const HomeLink: React.FC<IHomeLink> = (props) => {
   return (
     <Link to={props.link} style={{ textDecoration: "none" }}>
-      <Button variant="contained" style={{ backgroundColor: "black" }}>
+      <Button
+        variant="contained"
+        style={{ backgroundColor: "black" }}
+        size="small"
+      >
         {props.title}
       </Button>
     </Link>

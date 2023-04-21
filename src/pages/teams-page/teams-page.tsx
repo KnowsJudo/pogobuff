@@ -52,7 +52,7 @@ export const TeamsPage: React.FC = () => {
   const [nextTeam, setNextTeam] = useState<ITeam>(initialTeams);
   const [editNext, setEditNext] = useState<INextTeam>(initialEdit);
   const [teams, setTeams] = useState<ITeam[]>([
-    { lead: "Araquanid", switch: "Cradily", closer: "Ferrothorn" },
+    { lead: "", switch: "", closer: "" },
   ]);
   const [loading, setLoading] = useState<boolean>(false);
 

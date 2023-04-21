@@ -29,6 +29,9 @@ export const HomePage: React.FC = () => {
         <Grid item>
           <HomeLink link="/elite" title="Elite Tms Candidates" />
         </Grid>
+        <Grid item>
+          <HomeLink link="/rewards" title="PvP Encounters" />
+        </Grid>
       </Grid>
     </section>
   );
