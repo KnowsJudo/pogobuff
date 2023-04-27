@@ -9,7 +9,7 @@
 .set-data-inner {
   display: flex;
   flex-direction: column;
-  padding: 30px;
+  padding: 20px;
   background-color: #f8f8f8;
   border-radius: 7px;
 }
@@ -20,6 +20,11 @@
 
 .set-data-edit {
   display: flex;
+}
+
+.set-winnable {
+  font-size: 12px;
+  padding-bottom: 10px;
 }
 
 @media (max-width: 1700px) {

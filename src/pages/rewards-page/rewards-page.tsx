@@ -5,6 +5,7 @@ import { NavBar } from "../../components/nav-bar/nav-bar";
 import { Button, Input } from "@mui/material";
 import { pokeApi } from "../../helpers/api-url";
 import { debounce } from "../../helpers/debounce";
+import SearchIcon from "@mui/icons-material/Search";
 import "./rewards-page.css";
 
 interface IPoke {
@@ -47,12 +48,14 @@ export const RewardsPage: React.FC = () => {
       <BackButton />
       <div className="rewards-input">
         <span>
+          <Button>
+            <SearchIcon />
+          </Button>
           <Input
             placeholder="Encounter"
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
           />
-          <Button onClick={() => getPokemon()}>Search</Button>
         </span>
         <Input type="number" placeholder="Seen" />
       </div>

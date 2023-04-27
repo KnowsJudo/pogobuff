@@ -30,8 +30,8 @@ export const SetData: React.FC<ISetData> = (props) => {
     const setToRemove = userData.sets.find((match, ind) => ind === setNumber);
     let totalChange = 0;
     if (setToRemove) {
-      const winChange = setToRemove.wins > 0 ? setToRemove.wins * 17 : 0;
-      const lossChange = setToRemove.losses > 0 ? setToRemove.losses * -17 : 0;
+      const winChange = setToRemove.wins > 0 ? setToRemove.wins * 16 : 0;
+      const lossChange = setToRemove.losses > 0 ? setToRemove.losses * -16 : 0;
       totalChange = winChange + lossChange;
     }
 
@@ -57,6 +57,10 @@ export const SetData: React.FC<ISetData> = (props) => {
           <div key={ind} className="set-data-inner">
             {`Set ${ind + 1}:`}
             <Scorer id={ind} score={next} addTie={props.addTie[ind]} />
+            <span className="set-winnable">
+              Winnable games: <input placeholder="0" type="number" />
+              /5
+            </span>
             <span className="set-data-edit">
               {!props.addTie[ind] && (
                 <>

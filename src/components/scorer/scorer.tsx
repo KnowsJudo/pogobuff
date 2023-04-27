@@ -40,16 +40,16 @@ export const Scorer: React.FC<IScorer> = (props) => {
           current: !prev.elo.starting
             ? 0
             : side === "left"
-            ? prev.elo.current + 17
+            ? prev.elo.current + 16
             : side === "tie"
             ? prev.elo.current
-            : prev.elo.current - 17,
+            : prev.elo.current - 16,
           change:
             side === "left"
-              ? prev.elo.change + 17
+              ? prev.elo.change + 16
               : side === "tie"
               ? prev.elo.change
-              : prev.elo.change - 17,
+              : prev.elo.change - 16,
           ending: prev.elo.ending,
         },
 

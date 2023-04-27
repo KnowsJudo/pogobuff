@@ -8,6 +8,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
+button,
+code,
+input {
   font-family: "Kanit", sans-serif;
 }
