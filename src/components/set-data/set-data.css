@@ -23,8 +23,17 @@
 }
 
 .set-winnable {
+  display: flex;
+  justify-content: space-between;
+  max-width: 350px;
   font-size: 12px;
   padding-bottom: 10px;
+}
+
+.set-winnable > input {
+  border: none;
+  padding: 0;
+  font-size: inherit;
 }
 
 @media (max-width: 1700px) {

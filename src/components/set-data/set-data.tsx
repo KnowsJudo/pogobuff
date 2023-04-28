@@ -58,7 +58,7 @@ export const SetData: React.FC<ISetData> = (props) => {
             {`Set ${ind + 1}:`}
             <Scorer id={ind} score={next} addTie={props.addTie[ind]} />
             <span className="set-winnable">
-              Winnable games: <input placeholder="0" type="number" />
+              Winnable games: &nbsp; <input placeholder="0" type="number" />
               /5
             </span>
             <span className="set-data-edit">
