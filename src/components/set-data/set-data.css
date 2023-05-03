@@ -25,15 +25,22 @@
 .set-winnable {
   display: flex;
   justify-content: space-between;
+  min-width: 100px;
   max-width: 350px;
   font-size: 12px;
   padding-bottom: 10px;
 }
 
 .set-winnable > input {
-  border: none;
+  border: 1px;
   padding: 0;
   font-size: inherit;
+  box-sizing: border-box;
+  width: 30px;
+}
+
+.winnable-tag {
+  padding-right: 80px;
 }
 
 @media (max-width: 1700px) {

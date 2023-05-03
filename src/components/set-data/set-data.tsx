@@ -15,7 +15,7 @@ interface ISetData {
 
 export const SetData: React.FC<ISetData> = (props) => {
   const { userData, setUserData } = useContext(UserContext);
-  const [winnable, setWinnable] = useState<number>(0);
+  const [winnable, setWinnable] = useState<number[]>([0, 0, 0, 0, 0]);
 
   const addTieToArray = (setNumber: number) => {
     props.setAddTie((prev) =>
@@ -25,12 +25,17 @@ export const SetData: React.FC<ISetData> = (props) => {
     );
   };
 
-  const addWinnable = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const addWinnable = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    ind: number
+  ) => {
     let num = Number(event.target.value);
     if (num < 0 || num > 5) {
       return;
     }
-    setWinnable(num);
+    const updatedWinnable = [...winnable];
+    updatedWinnable[ind] = num;
+    setWinnable(updatedWinnable);
   };
 
   const removeSet = (setNumber: number) => {
@@ -66,16 +71,16 @@ export const SetData: React.FC<ISetData> = (props) => {
           <div key={ind} className="set-data-inner">
             {`Set ${ind + 1}:`}
             <Scorer id={ind} score={next} addTie={props.addTie[ind]} />
-            <span className="set-winnable">
-              Winnable games: &nbsp;{" "}
+            <div className="set-winnable">
+              <span className="winnable-tag">Winnable games:</span>
               <input
                 placeholder="0"
                 type="number"
-                value={winnable}
-                onChange={addWinnable}
+                value={winnable[ind]}
+                onChange={(e) => addWinnable(e, ind)}
               />
               /5
-            </span>
+            </div>
             <span className="set-data-edit">
               {!props.addTie[ind] && (
                 <>
