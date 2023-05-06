@@ -25,10 +25,10 @@ export const SetData: React.FC<ISetData> = (props) => {
     );
   };
 
-  const addWinnable = (
+  const addWinnable: (
     event: React.ChangeEvent<HTMLInputElement>,
     ind: number
-  ) => {
+  ) => void = (event, ind) => {
     let num = Number(event.target.value);
     if (num < 0 || num > 5) {
       return;

@@ -20,6 +20,7 @@ import "./set-page.css";
 export const SetPage: React.FC = () => {
   const { setUserData } = useContext(UserContext);
   const [addTie, setAddTie] = useState(() => retainTieState());
+  const [modal, setModal] = useState<boolean>(false);
 
   useEffect(() => {
     sessionStorage.setItem("Ties Added", JSON.stringify(addTie));
@@ -49,6 +50,11 @@ export const SetPage: React.FC = () => {
     });
   };
 
+  const changeModal: () => void = () => {
+    removeAllSets();
+    setModal(false);
+  };
+
   const removeAllSets: () => void = () => {
     setAddTie(startingTieState);
     setUserData((prev: IUserState) => {
@@ -66,6 +72,10 @@ export const SetPage: React.FC = () => {
       <BackButton />
       <EloInfo />
       <SetData addTie={addTie} setAddTie={setAddTie} />
+      <dialog open={modal} className="confirm-modal">
+        Remove all sets data?
+        <Button onClick={() => changeModal()}>Confirm</Button>
+      </dialog>
       <div className="set-options">
         <span className="add-set">
           <Button style={{ color: "black" }} onClick={() => addSet()}>
@@ -78,7 +88,7 @@ export const SetPage: React.FC = () => {
           </Button>
         </span>
         <span className="remove-all">
-          <Button style={{ color: "#ff4d4d" }} onClick={() => removeAllSets()}>
+          <Button style={{ color: "#ff4d4d" }} onClick={() => setModal(true)}>
             <SyncIcon /> &nbsp; Reset all
           </Button>
         </span>
