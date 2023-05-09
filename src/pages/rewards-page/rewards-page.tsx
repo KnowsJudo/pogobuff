@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import { BackButton } from "../../components/back-button/back-button";
 import { NavBar } from "../../components/nav-bar/nav-bar";
-import { Button, Input } from "@mui/material";
+import { Button, Input, MenuItem } from "@mui/material";
 import { pokeApi } from "../../helpers/api-url";
 import { debounce } from "../../helpers/debounce";
 import SearchIcon from "@mui/icons-material/Search";
@@ -15,6 +15,8 @@ interface IPoke {
 
 export const RewardsPage: React.FC = () => {
   const [searchInput, setSearchInput] = useState<string>("");
+  const [options, setOptions] = useState<string[]>([]);
+  const [selected, setSelected] = useState<string>("");
 
   const getPokemon: () => void = useMemo(
     () =>
@@ -28,6 +30,8 @@ export const RewardsPage: React.FC = () => {
             match.name.toLowerCase().includes(searchInput.toLowerCase())
           );
           console.log("match", match);
+          const names = match.map((next: IPoke) => next.name);
+          setOptions(names);
         } catch (error) {
           console.error(error);
         }
@@ -39,8 +43,13 @@ export const RewardsPage: React.FC = () => {
     if (searchInput.length < 3 || searchInput.length > 10) {
       return;
     }
+    setSelected("");
     getPokemon();
   }, [searchInput, getPokemon]);
+
+  const handleSelect = (pokemon: string) => {
+    setSelected(pokemon);
+  };
 
   return (
     <section className="rewards-page">
@@ -56,6 +65,22 @@ export const RewardsPage: React.FC = () => {
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
           />
+
+          {selected ? (
+            <span>{selected}</span>
+          ) : (
+            options.map((next, i) => {
+              return (
+                <MenuItem
+                  key={i}
+                  value={next}
+                  onClick={() => handleSelect(next)}
+                >
+                  {next}
+                </MenuItem>
+              );
+            })
+          )}
         </span>
         <Input type="number" placeholder="Seen" />
       </div>
