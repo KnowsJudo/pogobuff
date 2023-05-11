@@ -5,6 +5,7 @@ import { NavBar } from "../../components/nav-bar/nav-bar";
 import { Button, Input, MenuItem } from "@mui/material";
 import { pokeApi } from "../../helpers/api-url";
 import { debounce } from "../../helpers/debounce";
+import CloseIcon from "@mui/icons-material/Close";
 import SearchIcon from "@mui/icons-material/Search";
 import "./rewards-page.css";
 
@@ -13,10 +14,15 @@ interface IPoke {
   url: string;
 }
 
+interface ISeenPoke {
+  name: string;
+  quantity: number;
+}
+
 export const RewardsPage: React.FC = () => {
   const [searchInput, setSearchInput] = useState<string>("");
   const [options, setOptions] = useState<string[]>([]);
-  const [selected, setSelected] = useState<string>("");
+  const [selected, setSelected] = useState<ISeenPoke[]>([]);
 
   const getPokemon: () => void = useMemo(
     () =>
@@ -41,14 +47,19 @@ export const RewardsPage: React.FC = () => {
 
   useEffect(() => {
     if (searchInput.length < 3 || searchInput.length > 10) {
+      setOptions([]);
       return;
     }
-    setSelected("");
     getPokemon();
   }, [searchInput, getPokemon]);
 
   const handleSelect = (pokemon: string) => {
-    setSelected(pokemon);
+    setSelected((prev) => [...prev, { name: pokemon, quantity: 0 }]);
+  };
+
+  const removePoke: (pokemon: string) => void = (pokemon) => {
+    const newArr = selected.filter((match) => match.name !== pokemon);
+    setSelected(newArr);
   };
 
   return (
@@ -66,23 +77,24 @@ export const RewardsPage: React.FC = () => {
             onChange={(e) => setSearchInput(e.target.value)}
           />
 
-          {selected ? (
-            <span>{selected}</span>
-          ) : (
-            options.map((next, i) => {
-              return (
-                <MenuItem
-                  key={i}
-                  value={next}
-                  onClick={() => handleSelect(next)}
-                >
-                  {next}
-                </MenuItem>
-              );
-            })
-          )}
+          {options.map((next, i) => {
+            return (
+              <MenuItem key={i} value={next} onClick={() => handleSelect(next)}>
+                {next}
+              </MenuItem>
+            );
+          })}
         </span>
-        <Input type="number" placeholder="Seen" />
+        {selected.map((next, i) => {
+          return (
+            <span key={i} className="selected-pokes">
+              {next.name} <input type="number" />
+              <Button onClick={() => removePoke(next.name)}>
+                <CloseIcon style={{ color: "black" }} />
+              </Button>
+            </span>
+          );
+        })}
       </div>
     </section>
   );
