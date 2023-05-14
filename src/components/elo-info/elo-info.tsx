@@ -14,6 +14,7 @@ import Veteran from "../../img/veteran.png";
 import Expert from "../../img/expert.png";
 import Legend from "../../img/legend.png";
 import "./elo-info.css";
+import { MenuItem, Select } from "@mui/material";
 
 export const EloInfo = () => {
   const { userData, setUserData } = useContext(UserContext);
@@ -21,6 +22,7 @@ export const EloInfo = () => {
   const [nameEntered, setNameEntered] = useState(false);
   const [elo, setElo] = useState<number>(0);
   const [eloEntered, setEloEntered] = useState(() => retrieveElo());
+  const [rank, setRank] = useState<string>("");
 
   const handleElo = (e: React.ChangeEvent<HTMLInputElement>) => {
     setElo(Number(e.target.value));
@@ -98,15 +100,24 @@ export const EloInfo = () => {
 
   return (
     <div className="current-stats">
+      <Select
+        label="Rank"
+        value={rank}
+        onChange={(e) => setRank(e.target.value)}
+      >
+        <MenuItem value={1900}>20</MenuItem>
+        <MenuItem value={2000}>Ace</MenuItem>
+        <MenuItem value={2500}>Veteran</MenuItem>
+        <MenuItem value={2750}>Expert</MenuItem>
+        <MenuItem value={3000}>Legend</MenuItem>
+      </Select>
       <div className="elo-display">
-        {eloEntered && (
-          <img
-            src={calcBadge(elo)}
-            height={40}
-            width={40}
-            alt="ace rank badge"
-          />
-        )}
+        <img
+          src={calcBadge(Number(rank))}
+          height={40}
+          width={40}
+          alt="ace rank badge"
+        />
         <div className="elo-info">
           {!nameEntered ? (
             <span className="enter-elo">
