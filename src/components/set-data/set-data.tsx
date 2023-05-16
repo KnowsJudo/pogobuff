@@ -16,6 +16,7 @@ interface ISetData {
 export const SetData: React.FC<ISetData> = (props) => {
   const { userData, setUserData } = useContext(UserContext);
   const [winnable, setWinnable] = useState<number[]>([0, 0, 0, 0, 0]);
+  const [winCons, setWinCons] = useState<string[]>([""]);
 
   const addTieToArray = (setNumber: number) => {
     props.setAddTie((prev) =>
@@ -73,13 +74,18 @@ export const SetData: React.FC<ISetData> = (props) => {
             <Scorer id={ind} score={next} addTie={props.addTie[ind]} />
             <div className="set-winnable">
               <span className="winnable-tag">Winnable games:</span>
-              <input
-                placeholder="0"
-                type="number"
-                value={winnable[ind]}
-                onChange={(e) => addWinnable(e, ind)}
-              />
-              /5
+              <span className="winnable-input">
+                <input
+                  placeholder="0"
+                  type="number"
+                  value={winnable[ind]}
+                  onChange={(e) => addWinnable(e, ind)}
+                />
+                /5
+              </span>
+              <Tooltip title="Note win conditions">
+                <button className="wincon-button">?</button>
+              </Tooltip>
             </div>
             <span className="set-data-edit">
               {!props.addTie[ind] && (

@@ -24,14 +24,14 @@
 
 .set-winnable {
   display: flex;
-  justify-content: space-between;
-  min-width: 100px;
-  max-width: 350px;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 230px;
   font-size: 12px;
   padding-bottom: 10px;
 }
 
-.set-winnable > input {
+.winnable-input > input {
   border: 1px;
   padding: 0;
   font-size: inherit;
@@ -39,8 +39,8 @@
   width: 30px;
 }
 
-.winnable-tag {
-  padding-right: 80px;
+.wincon-button:hover {
+  cursor: pointer;
 }
 
 @media (max-width: 1700px) {
