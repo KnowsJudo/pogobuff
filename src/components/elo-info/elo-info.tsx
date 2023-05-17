@@ -100,17 +100,20 @@ export const EloInfo = () => {
 
   return (
     <div className="current-stats">
-      <Select
-        label="Rank"
-        value={rank}
-        onChange={(e) => setRank(e.target.value)}
-      >
-        <MenuItem value={1900}>20</MenuItem>
-        <MenuItem value={2000}>Ace</MenuItem>
-        <MenuItem value={2500}>Veteran</MenuItem>
-        <MenuItem value={2750}>Expert</MenuItem>
-        <MenuItem value={3000}>Legend</MenuItem>
-      </Select>
+      <div className="player-badge">
+        <span className="player-tag">Player rank</span>
+        <Select
+          label="Rank"
+          value={rank}
+          onChange={(e) => setRank(e.target.value)}
+        >
+          <MenuItem value={1900}>20</MenuItem>
+          <MenuItem value={2000}>Ace</MenuItem>
+          <MenuItem value={2500}>Veteran</MenuItem>
+          <MenuItem value={2750}>Expert</MenuItem>
+          <MenuItem value={3000}>Legend</MenuItem>
+        </Select>
+      </div>
       <div className="elo-display">
         <img
           src={calcBadge(Number(rank))}

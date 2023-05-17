@@ -16,6 +16,7 @@ import AddIcon from "@mui/icons-material/Add";
 import CatchingPokemonIcon from "@mui/icons-material/CatchingPokemon";
 import SyncIcon from "@mui/icons-material/Sync";
 import "./set-page.css";
+import { CustomModal } from "../../components/modal/modal";
 
 export const SetPage: React.FC = () => {
   const { setUserData } = useContext(UserContext);
@@ -72,10 +73,11 @@ export const SetPage: React.FC = () => {
       <BackButton />
       <EloInfo />
       <SetData addTie={addTie} setAddTie={setAddTie} />
-      <dialog open={modal} className="confirm-modal">
+
+      {/* <dialog open={modal} className="confirm-modal">
         Remove all sets data?
         <Button onClick={() => changeModal()}>Confirm</Button>
-      </dialog>
+      </dialog> */}
       <div className="set-options">
         <span className="add-set">
           <Button style={{ color: "black" }} onClick={() => addSet()}>
@@ -93,6 +95,9 @@ export const SetPage: React.FC = () => {
           </Button>
         </span>
       </div>
+      {modal && (
+        <CustomModal cancel={() => setModal(false)} confirm={changeModal} />
+      )}
     </section>
   );
 };

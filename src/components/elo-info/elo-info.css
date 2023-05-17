@@ -30,6 +30,15 @@ h6 {
   justify-content: space-between;
 }
 
+.player-badge {
+  display: flex;
+  flex-direction: column;
+}
+
+.player-tag {
+  font-size: 12px;
+}
+
 @media (max-width: 750px) {
   .current-stats {
     flex-direction: column;
