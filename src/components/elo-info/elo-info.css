@@ -33,6 +33,7 @@ h6 {
 .player-badge {
   display: flex;
   flex-direction: column;
+  flex: 0.2;
 }
 
 .player-tag {

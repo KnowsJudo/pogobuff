@@ -16,7 +16,7 @@ import {
 import { BackButton } from "../../components/back-button/back-button";
 import { NavBar } from "../../components/nav-bar/nav-bar";
 import { apiURL } from "../../helpers/api-url";
-import { TableBody } from "@material-ui/core";
+import { TableBody } from "@mui/material";
 import Great from "../../img/great.png";
 import Ultra from "../../img/ultra.png";
 import Master from "../../img/master.png";

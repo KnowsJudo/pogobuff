@@ -1,6 +1,13 @@
 import React from "react";
 import axios from "axios";
-import { Button, Input } from "@material-ui/core";
+import {
+  Button,
+  Input,
+  FormControl,
+  MenuItem,
+  Select,
+  InputLabel,
+} from "@mui/material";
 import { useContext, useState } from "react";
 import { retrieveElo, UserContext } from "../../context";
 import { apiURL } from "../../helpers/api-url";
@@ -14,7 +21,6 @@ import Veteran from "../../img/veteran.png";
 import Expert from "../../img/expert.png";
 import Legend from "../../img/legend.png";
 import "./elo-info.css";
-import { MenuItem, Select } from "@mui/material";
 
 export const EloInfo = () => {
   const { userData, setUserData } = useContext(UserContext);
@@ -102,17 +108,20 @@ export const EloInfo = () => {
     <div className="current-stats">
       <div className="player-badge">
         <span className="player-tag">Player rank</span>
-        <Select
-          label="Rank"
-          value={rank}
-          onChange={(e) => setRank(e.target.value)}
-        >
-          <MenuItem value={1900}>20</MenuItem>
-          <MenuItem value={2000}>Ace</MenuItem>
-          <MenuItem value={2500}>Veteran</MenuItem>
-          <MenuItem value={2750}>Expert</MenuItem>
-          <MenuItem value={3000}>Legend</MenuItem>
-        </Select>
+        <FormControl fullWidth>
+          <InputLabel>Rank</InputLabel>
+          <Select
+            label="Rank"
+            value={rank}
+            onChange={(e) => setRank(e.target.value)}
+          >
+            <MenuItem value={1900}>20</MenuItem>
+            <MenuItem value={2000}>Ace</MenuItem>
+            <MenuItem value={2500}>Veteran</MenuItem>
+            <MenuItem value={2750}>Expert</MenuItem>
+            <MenuItem value={3000}>Legend</MenuItem>
+          </Select>
+        </FormControl>
       </div>
       <div className="elo-display">
         <img

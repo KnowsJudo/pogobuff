@@ -4,7 +4,7 @@ import { apiURL } from "../../helpers/api-url";
 import { NavBar } from "../../components/nav-bar/nav-bar";
 import { useContext, useState } from "react";
 import { UserContext } from "../../context";
-import { Button, Input, List, ListItem, Tooltip } from "@material-ui/core";
+import { Button, Input, List, ListItem, Tooltip } from "@mui/material";
 import { BackButton } from "../../components/back-button/back-button";
 import { IUserState } from "../../types/elo";
 import DoneIcon from "@mui/icons-material/Done";
