@@ -109,7 +109,7 @@ export const EloInfo = () => {
       <div className="player-badge">
         <span className="player-tag">Player rank</span>
         <FormControl fullWidth>
-          <InputLabel>Rank</InputLabel>
+          <InputLabel>Badge</InputLabel>
           <Select
             label="Rank"
             value={rank}

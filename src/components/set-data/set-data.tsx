@@ -3,6 +3,7 @@ import { Scorer } from "../scorer/scorer";
 import { useContext } from "react";
 import { UserContext } from "../../context";
 import { IUserState } from "../../types/elo";
+import { CustomModal } from "../modal/modal";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Tooltip from "@mui/material/Tooltip";
 import GraphicEqIcon from "@mui/icons-material/GraphicEq";
@@ -16,6 +17,7 @@ interface ISetData {
 export const SetData: React.FC<ISetData> = (props) => {
   const { userData, setUserData } = useContext(UserContext);
   const [winnable, setWinnable] = useState<number[]>([0, 0, 0, 0, 0]);
+  const [modal, setModal] = useState<boolean>(false);
   const [winCons, setWinCons] = useState<string[]>([""]);
 
   const addTieToArray = (setNumber: number) => {
@@ -65,6 +67,11 @@ export const SetData: React.FC<ISetData> = (props) => {
     });
   };
 
+  const changeModal: () => void = () => {
+    setWinCons(["Should have farmed down etc"]);
+    setModal(false);
+  };
+
   return (
     <div className="set-data-box">
       {userData.sets.map((next, ind) => {
@@ -84,7 +91,12 @@ export const SetData: React.FC<ISetData> = (props) => {
                 /5
               </span>
               <Tooltip title="Note win conditions">
-                <button className="wincon-button">?</button>
+                <button
+                  className="wincon-button"
+                  onClick={() => setModal(true)}
+                >
+                  ?
+                </button>
               </Tooltip>
             </div>
             <span className="set-data-edit">
@@ -119,6 +131,13 @@ export const SetData: React.FC<ISetData> = (props) => {
           </div>
         );
       })}
+      {modal && (
+        <CustomModal
+          cancel={() => setModal(false)}
+          confirm={changeModal}
+          prompt="Possible win cons:"
+        />
+      )}
     </div>
   );
 };

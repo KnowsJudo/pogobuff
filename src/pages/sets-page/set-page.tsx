@@ -12,11 +12,11 @@ import {
 import { NavBar } from "../../components/nav-bar/nav-bar";
 import { BackButton } from "../../components/back-button/back-button";
 import { IUserState } from "../../types/elo";
+import { CustomModal } from "../../components/modal/modal";
 import AddIcon from "@mui/icons-material/Add";
 import CatchingPokemonIcon from "@mui/icons-material/CatchingPokemon";
 import SyncIcon from "@mui/icons-material/Sync";
 import "./set-page.css";
-import { CustomModal } from "../../components/modal/modal";
 
 export const SetPage: React.FC = () => {
   const { setUserData } = useContext(UserContext);
@@ -73,11 +73,6 @@ export const SetPage: React.FC = () => {
       <BackButton />
       <EloInfo />
       <SetData addTie={addTie} setAddTie={setAddTie} />
-
-      {/* <dialog open={modal} className="confirm-modal">
-        Remove all sets data?
-        <Button onClick={() => changeModal()}>Confirm</Button>
-      </dialog> */}
       <div className="set-options">
         <span className="add-set">
           <Button style={{ color: "black" }} onClick={() => addSet()}>
@@ -96,7 +91,11 @@ export const SetPage: React.FC = () => {
         </span>
       </div>
       {modal && (
-        <CustomModal cancel={() => setModal(false)} confirm={changeModal} />
+        <CustomModal
+          cancel={() => setModal(false)}
+          confirm={changeModal}
+          prompt="Do you wish to remove all sets data?"
+        />
       )}
     </section>
   );
