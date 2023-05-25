@@ -51,7 +51,13 @@ export const TeamsPage: React.FC = () => {
   const [league, setLeague] = useState<string>("");
   const [nextTeam, setNextTeam] = useState<ITeam>(initialTeams);
   const [editNext, setEditNext] = useState<INextTeam>(initialEdit);
-  const [teams, setTeams] = useState<ITeam[]>([
+  const [greatTeams, setGreatTeams] = useState<ITeam[]>([
+    { lead: "", switch: "", closer: "" },
+  ]);
+  const [ultraTeams, setUltraTeams] = useState<ITeam[]>([
+    { lead: "", switch: "", closer: "" },
+  ]);
+  const [masterTeams, setMasterTeams] = useState<ITeam[]>([
     { lead: "", switch: "", closer: "" },
   ]);
   const [loading, setLoading] = useState<boolean>(false);
@@ -60,15 +66,25 @@ export const TeamsPage: React.FC = () => {
     setEditNext({ lead: true, switch: true, closer: true });
   };
 
-  const addTeamToList: () => void = () => {
+  const addTeamToList: (league: string) => void = () => {
     const keys = Object.values(nextTeam);
     if (keys.some((next) => !next)) {
       console.log("Please enter 3 pokemon");
       return;
     }
-    setTeams((prev) => {
-      return [...prev, nextTeam];
-    });
+    if (league === "Great") {
+      setGreatTeams((prev) => {
+        return [...prev, nextTeam];
+      });
+    } else if (league === "Ultra") {
+      setUltraTeams((prev) => {
+        return [...prev, nextTeam];
+      });
+    } else {
+      setMasterTeams((prev) => {
+        return [...prev, nextTeam];
+      });
+    }
     setNextTeam(initialTeams);
     setEditNext(initialEdit);
   };
@@ -82,7 +98,7 @@ export const TeamsPage: React.FC = () => {
       try {
         const data = await axios.get(`${apiURL}/api/teams`);
         const teams = data.data[league];
-        setTeams(teams);
+        setGreatTeams(teams);
         setLoading(false);
       } catch (error) {
         console.error(error);
@@ -156,16 +172,41 @@ export const TeamsPage: React.FC = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {teams.map((next, i) => {
-                  return (
-                    <TableRow key={i}>
-                      <TableCell>{next.lead}</TableCell>
-                      <TableCell>{next.switch}</TableCell>
-                      <TableCell>{next.closer}</TableCell>
-                    </TableRow>
-                  );
-                })}
-
+                {league === "Great"
+                  ? greatTeams.map((next, i) => {
+                      return (
+                        i !== 0 && (
+                          <TableRow key={i}>
+                            <TableCell>{next.lead}</TableCell>
+                            <TableCell>{next.switch}</TableCell>
+                            <TableCell>{next.closer}</TableCell>
+                          </TableRow>
+                        )
+                      );
+                    })
+                  : league === "Ultra"
+                  ? ultraTeams.map((next, i) => {
+                      return (
+                        i !== 0 && (
+                          <TableRow key={i}>
+                            <TableCell>{next.lead}</TableCell>
+                            <TableCell>{next.switch}</TableCell>
+                            <TableCell>{next.closer}</TableCell>
+                          </TableRow>
+                        )
+                      );
+                    })
+                  : masterTeams.map((next, i) => {
+                      return (
+                        i !== 0 && (
+                          <TableRow key={i}>
+                            <TableCell>{next.lead}</TableCell>
+                            <TableCell>{next.switch}</TableCell>
+                            <TableCell>{next.closer}</TableCell>
+                          </TableRow>
+                        )
+                      );
+                    })}
                 <TableRow>
                   {editNext.lead && (
                     <TableCell>
@@ -203,7 +244,7 @@ export const TeamsPage: React.FC = () => {
                       />
                       <Button
                         style={{ color: "black" }}
-                        onClick={() => addTeamToList()}
+                        onClick={() => addTeamToList(league)}
                       >
                         <DoneIcon />
                       </Button>
