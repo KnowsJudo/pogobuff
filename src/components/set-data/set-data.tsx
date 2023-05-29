@@ -43,8 +43,8 @@ export const SetData: React.FC<ISetData> = (props) => {
 
   const removeSet = (setNumber: number) => {
     props.setAddTie((prev) => prev.filter((match, ind) => ind !== setNumber));
-
     const setToRemove = userData.sets.find((match, ind) => ind === setNumber);
+
     let totalChange = 0;
     if (setToRemove) {
       const winChange = setToRemove.wins > 0 ? setToRemove.wins * 16 : 0;
@@ -62,7 +62,12 @@ export const SetData: React.FC<ISetData> = (props) => {
           change: prev.elo.change - totalChange,
           ending: prev.elo.ending,
         },
-        sets: prev.sets.filter((match, ind) => ind !== setNumber),
+        sets: prev.sets.map((match, ind) => {
+          if (ind === setNumber) {
+            return { wins: 0, losses: 0, ties: 0 };
+          }
+          return match;
+        }),
       };
     });
   };
