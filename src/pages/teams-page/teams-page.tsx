@@ -133,30 +133,30 @@ export const TeamsPage: React.FC = () => {
       ) : (
         league && (
           <div className="teams-list">
-            <span className="teams-head">
-              <img
-                src={
-                  league === "Great"
-                    ? Great
-                    : league === "Ultra"
-                    ? Ultra
-                    : Master
-                }
-                height={50}
-                width={50}
-                alt="great league icon"
-              />
-              <Button
-                onClick={() => addTeam()}
-                color="secondary"
-                size="small"
-                style={{ marginLeft: "auto" }}
-                variant="outlined"
-              >
-                <AddIcon />
-                New
-              </Button>
-            </span>
+            {!loading && (
+              <span className="teams-head">
+                <img
+                  src={
+                    league === "Great"
+                      ? Great
+                      : league === "Ultra"
+                      ? Ultra
+                      : Master
+                  }
+                  height={50}
+                  width={50}
+                  alt="great league icon"
+                />
+                <Button
+                  onClick={() => addTeam()}
+                  style={{ marginLeft: "auto" }}
+                  variant="contained"
+                >
+                  <AddIcon />
+                  New
+                </Button>
+              </span>
+            )}
             <Table>
               <TableHead>
                 <TableRow>

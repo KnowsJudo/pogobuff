@@ -4,12 +4,28 @@
   flex: 1 1 auto;
 }
 
-.current-candy {
+.candy-container {
   margin: 0 auto;
+}
+
+.candy-container > h6 {
+  margin-top: 20px;
 }
 
 .candy-pokes {
   display: flex;
   flex-direction: column;
-  margin: 0 auto;
+  margin: 100px auto;
+}
+
+.current-candy,
+.current-candyXL {
+  display: flex;
+  align-items: center;
+}
+
+.candy-image {
+  height: 40px;
+  width: 40px;
+  padding: 10px;
 }
