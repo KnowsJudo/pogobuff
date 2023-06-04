@@ -5,6 +5,8 @@ import { UserContext } from "../../context";
 import { Button, Input, List, ListItem, Tooltip } from "@mui/material";
 import { BackButton } from "../../components/back-button/back-button";
 import { IUserState } from "../../types/elo";
+import DeleteIcon from "@mui/icons-material/Delete";
+import DoneIcon from "@mui/icons-material/Done";
 import rareC from "../../img/candy.png";
 import xLC from "../../img/xl-candy.webp";
 import "./candy-page.css";
@@ -77,13 +79,25 @@ export const CandyPage: React.FC = () => {
             value={newCandidate}
           />
           <Tooltip title="Add to List">
-            <Button onClick={() => addNewCandidate()}>{">"}</Button>
+            <Button onClick={() => addNewCandidate()}>
+              <DoneIcon />
+            </Button>
           </Tooltip>
         </span>
         {candidates.map((next, i) => {
           return (
             <List key={i}>
-              <ListItem>{next}</ListItem>
+              <span className="list-items">
+                <ListItem>{next}</ListItem>
+                {next && (
+                  <DeleteIcon
+                    sx={{
+                      fontSize: 18,
+                      "&:hover": { cursor: "pointer" },
+                    }}
+                  />
+                )}
+              </span>
             </List>
           );
         })}
