@@ -54,6 +54,10 @@ export const RewardsPage: React.FC = () => {
   }, [searchInput, getPokemon]);
 
   const handleSelect = (pokemon: string) => {
+    if (selected.find((next: ISeenPoke) => next.name === pokemon)) {
+      console.log("Pokemon already in list");
+      return;
+    }
     setSelected((prev) => [...prev, { name: pokemon, quantity: 0 }]);
   };
 
@@ -88,7 +92,8 @@ export const RewardsPage: React.FC = () => {
         {selected.map((next, i) => {
           return (
             <span key={i} className="selected-pokes">
-              {next.name} <input type="number" />
+              <p className="poke-tag">{next.name}</p>
+              <input type="number" className="poke-amount" />
               <Button onClick={() => removePoke(next.name)}>
                 <CloseIcon style={{ color: "black" }} />
               </Button>

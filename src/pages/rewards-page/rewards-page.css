@@ -1,10 +1,28 @@
+.poke-amount {
+  margin-left: 50px;
+}
+
+.poke-tag {
+  font-size: 20px;
+}
+
+.rewards-page {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+}
+
 .rewards-input {
+  margin: 5% auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
 .selected-pokes {
+  display: flex;
   margin: auto;
-  justify-content: space-between;
+  justify-content: space-evenly;
+  align-items: center;
+  text-transform: capitalize;
 }

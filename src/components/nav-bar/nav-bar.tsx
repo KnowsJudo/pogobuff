@@ -21,6 +21,9 @@ export const NavBar: React.FC = () => {
         <Link to="/elite" style={{ textDecoration: "none", color: "white" }}>
           <li>Elite TMs</li>
         </Link>
+        <Link to="/rewards" style={{ textDecoration: "none", color: "white" }}>
+          <li>Encounters</li>
+        </Link>
       </ul>
     </nav>
   );
