@@ -1,5 +1,5 @@
 .poke-amount {
-  margin-left: 50px;
+  margin-left: 20px;
 }
 
 .poke-tag {
@@ -19,10 +19,18 @@
   justify-content: center;
 }
 
+.search-input {
+  padding-bottom: 20px;
+}
+
+.search-input > p {
+  font-size: 16px;
+}
+
 .selected-pokes {
   display: flex;
-  margin: auto;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
   text-transform: capitalize;
+  text-align: left;
 }

@@ -21,6 +21,7 @@ interface ISeenPoke {
 
 export const RewardsPage: React.FC = () => {
   const [searchInput, setSearchInput] = useState<string>("");
+  const [menuOpen, setMenuOpen] = useState<boolean>(false);
   const [options, setOptions] = useState<string[]>([]);
   const [selected, setSelected] = useState<ISeenPoke[]>([]);
 
@@ -46,10 +47,11 @@ export const RewardsPage: React.FC = () => {
   );
 
   useEffect(() => {
-    if (searchInput.length < 3 || searchInput.length > 10) {
+    if (searchInput.length < 3) {
       setOptions([]);
       return;
     }
+    setMenuOpen(true);
     getPokemon();
   }, [searchInput, getPokemon]);
 
@@ -58,7 +60,8 @@ export const RewardsPage: React.FC = () => {
       console.log("Pokemon already in list");
       return;
     }
-    setSelected((prev) => [...prev, { name: pokemon, quantity: 0 }]);
+    setSelected((prev) => [...prev, { name: pokemon, quantity: 1 }]);
+    setMenuOpen(false);
   };
 
   const removePoke: (pokemon: string) => void = (pokemon) => {
@@ -66,12 +69,30 @@ export const RewardsPage: React.FC = () => {
     setSelected(newArr);
   };
 
+  const addQuantity: (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    ind: number
+  ) => void = (event, ind) => {
+    let num = Number(event.target.value);
+    if (num < 1) {
+      return;
+    }
+    setSelected((prev) => {
+      const updatedSelected = [...prev];
+      updatedSelected[ind] = {
+        ...updatedSelected[ind],
+        quantity: num,
+      };
+      return updatedSelected;
+    });
+  };
+
   return (
     <section className="rewards-page">
       <NavBar />
       <BackButton />
       <div className="rewards-input">
-        <span>
+        <span className="search-input">
           <Button>
             <SearchIcon />
           </Button>
@@ -81,19 +102,35 @@ export const RewardsPage: React.FC = () => {
             onChange={(e) => setSearchInput(e.target.value)}
           />
 
-          {options.map((next, i) => {
-            return (
-              <MenuItem key={i} value={next} onClick={() => handleSelect(next)}>
-                {next}
-              </MenuItem>
-            );
-          })}
+          {menuOpen &&
+            options.map((next, i) => {
+              return (
+                <MenuItem
+                  key={i}
+                  value={next}
+                  onClick={() => handleSelect(next)}
+                >
+                  {next}
+                </MenuItem>
+              );
+            })}
+          {!options.length && searchInput.length > 2 && (
+            <p>
+              <i>No pokemon found</i>
+            </p>
+          )}
         </span>
         {selected.map((next, i) => {
           return (
             <span key={i} className="selected-pokes">
               <p className="poke-tag">{next.name}</p>
-              <input type="number" className="poke-amount" />
+              <Input
+                type="number"
+                className="poke-amount"
+                placeholder="quantity"
+                value={next.quantity}
+                onChange={(e) => addQuantity(e, i)}
+              />
               <Button onClick={() => removePoke(next.name)}>
                 <CloseIcon style={{ color: "black" }} />
               </Button>
