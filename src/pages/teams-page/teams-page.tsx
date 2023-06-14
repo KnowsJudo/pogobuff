@@ -4,24 +4,18 @@ import {
   CircularProgress,
   Button,
   FormControl,
-  Input,
   InputLabel,
   MenuItem,
   Select,
-  Table,
-  TableCell,
-  TableHead,
-  TableRow,
 } from "@mui/material";
 import { BackButton } from "../../components/back-button/back-button";
 import { NavBar } from "../../components/nav-bar/nav-bar";
 import { apiURL } from "../../helpers/api-url";
-import { TableBody } from "@mui/material";
+import { TeamsDisplay } from "../../components/teams-display/teams-display";
 import Great from "../../img/great.png";
 import Ultra from "../../img/ultra.png";
 import Master from "../../img/master.png";
 import AddIcon from "@mui/icons-material/Add";
-import DoneIcon from "@mui/icons-material/Done";
 import "./teams-page.css";
 
 interface ITeam {
@@ -157,102 +151,16 @@ export const TeamsPage: React.FC = () => {
                 </Button>
               </span>
             )}
-            <Table>
-              <TableHead>
-                <TableRow>
-                  <TableCell>
-                    <b>Lead</b>
-                  </TableCell>
-                  <TableCell>
-                    <b>Switch</b>
-                  </TableCell>
-                  <TableCell>
-                    <b>Closer</b>
-                  </TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {league === "Great"
-                  ? greatTeams.map((next, i) => {
-                      return (
-                        i !== 0 && (
-                          <TableRow key={i}>
-                            <TableCell>{next.lead}</TableCell>
-                            <TableCell>{next.switch}</TableCell>
-                            <TableCell>{next.closer}</TableCell>
-                          </TableRow>
-                        )
-                      );
-                    })
-                  : league === "Ultra"
-                  ? ultraTeams.map((next, i) => {
-                      return (
-                        i !== 0 && (
-                          <TableRow key={i}>
-                            <TableCell>{next.lead}</TableCell>
-                            <TableCell>{next.switch}</TableCell>
-                            <TableCell>{next.closer}</TableCell>
-                          </TableRow>
-                        )
-                      );
-                    })
-                  : masterTeams.map((next, i) => {
-                      return (
-                        i !== 0 && (
-                          <TableRow key={i}>
-                            <TableCell>{next.lead}</TableCell>
-                            <TableCell>{next.switch}</TableCell>
-                            <TableCell>{next.closer}</TableCell>
-                          </TableRow>
-                        )
-                      );
-                    })}
-                <TableRow>
-                  {editNext.lead && (
-                    <TableCell>
-                      <Input
-                        value={nextTeam.lead}
-                        onChange={(e) =>
-                          setNextTeam((prev) => {
-                            return { ...prev, lead: e.target.value };
-                          })
-                        }
-                      />
-                    </TableCell>
-                  )}
-                  {editNext.switch && (
-                    <TableCell>
-                      <Input
-                        value={nextTeam.switch}
-                        onChange={(e) =>
-                          setNextTeam((prev) => {
-                            return { ...prev, switch: e.target.value };
-                          })
-                        }
-                      />
-                    </TableCell>
-                  )}
-                  {editNext.closer && (
-                    <TableCell>
-                      <Input
-                        value={nextTeam.closer}
-                        onChange={(e) =>
-                          setNextTeam((prev) => {
-                            return { ...prev, closer: e.target.value };
-                          })
-                        }
-                      />
-                      <Button
-                        style={{ color: "black" }}
-                        onClick={() => addTeamToList(league)}
-                      >
-                        <DoneIcon />
-                      </Button>
-                    </TableCell>
-                  )}
-                </TableRow>
-              </TableBody>
-            </Table>
+            <TeamsDisplay
+              league={league}
+              greatTeams={greatTeams}
+              ultraTeams={ultraTeams}
+              masterTeams={masterTeams}
+              editNext={editNext}
+              nextTeam={nextTeam}
+              setNextTeam={setNextTeam}
+              addTeamToList={addTeamToList}
+            />
           </div>
         )
       )}
