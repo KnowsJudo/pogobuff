@@ -31,12 +31,9 @@ export const RewardsPage: React.FC = () => {
         try {
           const data = await axios.get(`${pokeApi}pokemon?limit=2000&offset=0`);
           const results = data.data.results;
-          console.log(results);
-          console.log("search", searchInput);
           const match = results.filter((match: IPoke) =>
             match.name.toLowerCase().includes(searchInput.toLowerCase())
           );
-          console.log("match", match);
           const names = match.map((next: IPoke) => next.name);
           setOptions(names);
         } catch (error) {

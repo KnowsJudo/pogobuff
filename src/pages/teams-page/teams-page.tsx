@@ -12,9 +12,7 @@ import { BackButton } from "../../components/back-button/back-button";
 import { NavBar } from "../../components/nav-bar/nav-bar";
 import { apiURL } from "../../helpers/api-url";
 import { TeamsDisplay } from "../../components/teams-display/teams-display";
-import Great from "../../img/great.png";
-import Ultra from "../../img/ultra.png";
-import Master from "../../img/master.png";
+import { LeagueIcon } from "../../components/league-icon/league-icon";
 import AddIcon from "@mui/icons-material/Add";
 import "./teams-page.css";
 
@@ -129,18 +127,7 @@ export const TeamsPage: React.FC = () => {
           <div className="teams-list">
             {!loading && (
               <span className="teams-head">
-                <img
-                  src={
-                    league === "Great"
-                      ? Great
-                      : league === "Ultra"
-                      ? Ultra
-                      : Master
-                  }
-                  height={50}
-                  width={50}
-                  alt="great league icon"
-                />
+                <LeagueIcon league={league} />
                 <Button
                   onClick={() => addTeam()}
                   style={{ marginLeft: "auto" }}
