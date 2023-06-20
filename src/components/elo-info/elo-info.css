@@ -30,6 +30,11 @@ h6 {
   justify-content: space-between;
 }
 
+div.MuiInput-underline::before,
+div.MuiInput-underline::after {
+  border-bottom-color: black;
+}
+
 .player-badge {
   display: flex;
   flex-direction: column;

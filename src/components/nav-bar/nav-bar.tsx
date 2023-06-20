@@ -1,29 +1,17 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavBarLink } from "../nav-link/nav-link";
 import "./nav-bar.css";
 
 export const NavBar: React.FC = () => {
   return (
     <nav className="nav-bar">
       <ul className="nav-list">
-        <Link to="/" style={{ textDecoration: "none", color: "white" }}>
-          <li>Home</li>
-        </Link>
-        <Link to="/sets" style={{ textDecoration: "none", color: "white" }}>
-          <li>Sets</li>
-        </Link>
-        <Link to="/teams" style={{ textDecoration: "none", color: "white" }}>
-          <li>Teams</li>
-        </Link>
-        <Link to="/candy" style={{ textDecoration: "none", color: "white" }}>
-          <li>Rare Candy</li>
-        </Link>
-        <Link to="/elite" style={{ textDecoration: "none", color: "white" }}>
-          <li>Elite TMs</li>
-        </Link>
-        <Link to="/rewards" style={{ textDecoration: "none", color: "white" }}>
-          <li>Encounters</li>
-        </Link>
+        <NavBarLink destination="/" label="Home" />
+        <NavBarLink destination="sets/" label="Sets" />
+        <NavBarLink destination="/teams" label="Teams" />
+        <NavBarLink destination="/candy" label="Rare Candy" />
+        <NavBarLink destination="/elite" label="Elite TMs" />
+        <NavBarLink destination="/rewards" label="Encounters" />
       </ul>
     </nav>
   );

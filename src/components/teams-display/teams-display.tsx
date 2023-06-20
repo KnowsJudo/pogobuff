@@ -111,22 +111,24 @@ export const TeamsDisplay: React.FC<ITeamsDisplay> = (props) => {
             </TableCell>
           )}
           {props.editNext.closer && (
-            <TableCell>
-              <Input
-                value={props.nextTeam.closer}
-                onChange={(e) =>
-                  props.setNextTeam((prev) => {
-                    return { ...prev, closer: e.target.value };
-                  })
-                }
-              />
+            <>
+              <TableCell>
+                <Input
+                  value={props.nextTeam.closer}
+                  onChange={(e) =>
+                    props.setNextTeam((prev) => {
+                      return { ...prev, closer: e.target.value };
+                    })
+                  }
+                />
+              </TableCell>
               <Button
                 style={{ color: "black" }}
                 onClick={() => props.addTeamToList(props.league)}
               >
                 <DoneIcon />
               </Button>
-            </TableCell>
+            </>
           )}
         </TableRow>
       </TableBody>

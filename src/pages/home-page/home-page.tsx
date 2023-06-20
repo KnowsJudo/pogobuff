@@ -16,7 +16,11 @@ export const HomePage: React.FC = () => {
           width: "100%",
         }}
       />
-      <Grid container spacing={5} style={{ margin: "3% 0 0 33%" }}>
+      <Grid
+        container
+        spacing={5}
+        style={{ flexDirection: "column", margin: "3% 0 0 33%" }}
+      >
         <Grid item>
           <HomeLink link="/sets" title="Gbl Sets Tracker" />
         </Grid>
