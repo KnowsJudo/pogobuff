@@ -128,7 +128,7 @@ export const EloInfo = () => {
           src={calcBadge(Number(rank))}
           height={40}
           width={40}
-          alt="ace rank badge"
+          alt="Rank badge"
         />
         <div className="elo-info">
           {!nameEntered ? (
