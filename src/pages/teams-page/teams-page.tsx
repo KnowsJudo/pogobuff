@@ -120,7 +120,9 @@ export const TeamsPage: React.FC = () => {
       </div>
       {loading ? (
         <div className="load-box">
-          {loading && <CircularProgress style={{ margin: "auto" }} />}
+          {loading && (
+            <CircularProgress style={{ margin: "auto", color: "black" }} />
+          )}
         </div>
       ) : (
         league && (
@@ -130,7 +132,7 @@ export const TeamsPage: React.FC = () => {
                 <LeagueIcon league={league} />
                 <Button
                   onClick={() => addTeam()}
-                  style={{ marginLeft: "auto" }}
+                  style={{ marginLeft: "auto", backgroundColor: "black" }}
                   variant="contained"
                 >
                   <AddIcon />

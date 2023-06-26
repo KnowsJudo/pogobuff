@@ -1,22 +1,13 @@
-.add-set {
+.add-set,
+.battle-day,
+.remove-all {
   display: flex;
   margin: auto;
   padding: 1em;
 }
 
-.battle-day {
-  display: flex;
-  margin: auto;
-}
-
-.remove-all {
-  display: flex;
-  margin: auto;
-}
-
 .set-options {
   display: flex;
-  color: #ff4d4d;
 }
 
 .set-page {
@@ -24,4 +15,10 @@
   flex-direction: column;
   flex: 1 1 auto;
   background-color: white;
+}
+
+@media (max-width: 750px) {
+  .set-options {
+    flex-direction: column;
+  }
 }

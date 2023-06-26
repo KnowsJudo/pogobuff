@@ -108,7 +108,7 @@ export const EloInfo = () => {
     <div className="current-stats">
       <div className="player-badge">
         <span className="player-tag">Player rank</span>
-        <FormControl fullWidth>
+        <FormControl>
           <InputLabel>Badge</InputLabel>
           <Select
             label="Rank"
@@ -140,7 +140,7 @@ export const EloInfo = () => {
                   setName(e.target.value)
                 }
               />
-              <Button onClick={() => submitName()}>
+              <Button onClick={() => submitName()} style={{ color: "black" }}>
                 <DoneIcon />
               </Button>
             </span>
@@ -173,7 +173,7 @@ export const EloInfo = () => {
                   handleElo(e)
                 }
               />
-              <Button onClick={() => submitElo()}>
+              <Button onClick={() => submitElo()} style={{ color: "black" }}>
                 <DoneIcon />
               </Button>
             </span>

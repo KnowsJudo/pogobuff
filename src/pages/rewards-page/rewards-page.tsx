@@ -91,7 +91,7 @@ export const RewardsPage: React.FC = () => {
       <div className="rewards-input">
         <span className="search-input">
           <Button>
-            <SearchIcon />
+            <SearchIcon style={{ color: "black" }} />
           </Button>
           <Input
             placeholder="Encounter"

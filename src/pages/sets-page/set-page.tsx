@@ -75,17 +75,29 @@ export const SetPage: React.FC = () => {
       <SetData addTie={addTie} setAddTie={setAddTie} />
       <div className="set-options">
         <span className="add-set">
-          <Button style={{ color: "black" }} onClick={() => addSet()}>
+          <Button
+            variant="contained"
+            style={{ backgroundColor: "#3d3d3d" }}
+            onClick={() => addSet()}
+          >
             <AddIcon /> &nbsp; New Set
           </Button>
         </span>
         <span className="battle-day">
-          <Button style={{ color: "black" }} onClick={() => addBattleDay()}>
+          <Button
+            variant="outlined"
+            style={{ borderColor: "black", color: "black" }}
+            onClick={() => addBattleDay()}
+          >
             <CatchingPokemonIcon /> &nbsp; Go Battle Day
           </Button>
         </span>
         <span className="remove-all">
-          <Button style={{ color: "#ff4d4d" }} onClick={() => setModal(true)}>
+          <Button
+            variant="outlined"
+            style={{ borderColor: "black", color: "#ff4d4d" }}
+            onClick={() => setModal(true)}
+          >
             <SyncIcon /> &nbsp; Reset all
           </Button>
         </span>

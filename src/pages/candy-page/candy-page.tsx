@@ -79,7 +79,10 @@ export const CandyPage: React.FC = () => {
             value={newCandidate}
           />
           <Tooltip title="Add to List">
-            <Button onClick={() => addNewCandidate()}>
+            <Button
+              onClick={() => addNewCandidate()}
+              style={{ color: "black" }}
+            >
               <DoneIcon />
             </Button>
           </Tooltip>

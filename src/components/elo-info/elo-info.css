@@ -62,4 +62,7 @@ label.MuiInputLabel-root.Mui-focused {
   .elo-info {
     flex-direction: column;
   }
+  .player-badge {
+    width: 40%;
+  }
 }
