@@ -1,7 +1,6 @@
 import React from "react";
 import axios from "axios";
 import {
-  Button,
   Input,
   FormControl,
   MenuItem,
@@ -12,7 +11,6 @@ import { useContext, useState } from "react";
 import { retrieveElo, UserContext } from "../../context";
 import { apiURL } from "../../helpers/api-url";
 import { IUserState } from "../../types/elo";
-import DoneIcon from "@mui/icons-material/Done";
 import Tooltip from "@mui/material/Tooltip";
 import EditIcon from "@mui/icons-material/Edit";
 import Rank20 from "../../img/20.png";
@@ -21,6 +19,7 @@ import Veteran from "../../img/veteran.png";
 import Expert from "../../img/expert.png";
 import Legend from "../../img/legend.png";
 import "./elo-info.css";
+import { DoneButton } from "../done-button/done-button";
 
 export const EloInfo = () => {
   const { userData, setUserData } = useContext(UserContext);
@@ -140,9 +139,7 @@ export const EloInfo = () => {
                   setName(e.target.value)
                 }
               />
-              <Button onClick={() => submitName()} style={{ color: "black" }}>
-                <DoneIcon />
-              </Button>
+              <DoneButton doneFn={submitName} />
             </span>
           ) : (
             <span className="edit-elo">
@@ -173,9 +170,7 @@ export const EloInfo = () => {
                   handleElo(e)
                 }
               />
-              <Button onClick={() => submitElo()} style={{ color: "black" }}>
-                <DoneIcon />
-              </Button>
+              <DoneButton doneFn={submitElo} />
             </span>
           ) : (
             <span className="edit-elo">

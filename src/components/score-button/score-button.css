@@ -1,0 +1,9 @@
+.score-button {
+  border-radius: 8px;
+  background-color: black;
+  margin: auto;
+}
+
+.score-button:hover {
+  background-color: black;
+}

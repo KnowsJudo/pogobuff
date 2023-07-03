@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  Button,
   Input,
   Table,
   TableBody,
@@ -8,7 +7,7 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-import DoneIcon from "@mui/icons-material/Done";
+import { DoneButton } from "../done-button/done-button";
 
 interface ITeamsDisplay {
   league: string;
@@ -122,12 +121,7 @@ export const TeamsDisplay: React.FC<ITeamsDisplay> = (props) => {
                   }
                 />
               </TableCell>
-              <Button
-                style={{ color: "black" }}
-                onClick={() => props.addTeamToList(props.league)}
-              >
-                <DoneIcon />
-              </Button>
+              <DoneButton doneFn={() => props.addTeamToList(props.league)} />
             </>
           )}
         </TableRow>

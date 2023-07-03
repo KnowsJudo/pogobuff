@@ -2,11 +2,11 @@ import React from "react";
 import { NavBar } from "../../components/nav-bar/nav-bar";
 import { useContext, useState } from "react";
 import { UserContext } from "../../context";
-import { Button, Input, List, ListItem, Tooltip } from "@mui/material";
+import { Input, List, ListItem, Tooltip } from "@mui/material";
 import { BackButton } from "../../components/back-button/back-button";
 import { IUserState } from "../../types/elo";
+import { DoneButton } from "../../components/done-button/done-button";
 import DeleteIcon from "@mui/icons-material/Delete";
-import DoneIcon from "@mui/icons-material/Done";
 import rareC from "../../img/candy.png";
 import xLC from "../../img/xl-candy.webp";
 import "./candy-page.css";
@@ -79,12 +79,7 @@ export const CandyPage: React.FC = () => {
             value={newCandidate}
           />
           <Tooltip title="Add to List">
-            <Button
-              onClick={() => addNewCandidate()}
-              style={{ color: "black" }}
-            >
-              <DoneIcon />
-            </Button>
+            <DoneButton doneFn={addNewCandidate} />
           </Tooltip>
         </span>
         {candidates.map((next, i) => {
