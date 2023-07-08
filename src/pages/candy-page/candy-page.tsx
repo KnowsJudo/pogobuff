@@ -5,7 +5,7 @@ import { UserContext } from "../../context";
 import { Input, List, ListItem, Tooltip } from "@mui/material";
 import { BackButton } from "../../components/back-button/back-button";
 import { IUserState } from "../../types/elo";
-import { DoneButton } from "../../components/done-button/done-button";
+import { ConfirmButton } from "../../components/confirm-button/confirm-button";
 import DeleteIcon from "@mui/icons-material/Delete";
 import rareC from "../../img/candy.png";
 import xLC from "../../img/xl-candy.webp";
@@ -79,7 +79,7 @@ export const CandyPage: React.FC = () => {
             value={newCandidate}
           />
           <Tooltip title="Add to List">
-            <DoneButton doneFn={addNewCandidate} />
+            <ConfirmButton confirmFn={addNewCandidate} />
           </Tooltip>
         </span>
         {candidates.map((next, i) => {

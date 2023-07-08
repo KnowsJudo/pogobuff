@@ -5,7 +5,7 @@ import { NavBar } from "../../components/nav-bar/nav-bar";
 import { Button, Input, MenuItem } from "@mui/material";
 import { pokeApi } from "../../helpers/api-url";
 import { debounce } from "../../helpers/debounce";
-import CloseIcon from "@mui/icons-material/Close";
+import { ConfirmButton } from "../../components/confirm-button/confirm-button";
 import SearchIcon from "@mui/icons-material/Search";
 import "./rewards-page.css";
 
@@ -128,9 +128,10 @@ export const RewardsPage: React.FC = () => {
                 value={next.quantity}
                 onChange={(e) => addQuantity(e, i)}
               />
-              <Button onClick={() => removePoke(next.name)}>
-                <CloseIcon style={{ color: "black" }} />
-              </Button>
+              <ConfirmButton
+                cancel={true}
+                confirmFn={() => removePoke(next.name)}
+              />
             </span>
           );
         })}

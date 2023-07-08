@@ -11,6 +11,7 @@ import { useContext, useState } from "react";
 import { retrieveElo, UserContext } from "../../context";
 import { apiURL } from "../../helpers/api-url";
 import { IUserState } from "../../types/elo";
+import { ConfirmButton } from "../confirm-button/confirm-button";
 import Tooltip from "@mui/material/Tooltip";
 import EditIcon from "@mui/icons-material/Edit";
 import Rank20 from "../../img/20.png";
@@ -19,7 +20,6 @@ import Veteran from "../../img/veteran.png";
 import Expert from "../../img/expert.png";
 import Legend from "../../img/legend.png";
 import "./elo-info.css";
-import { DoneButton } from "../done-button/done-button";
 
 export const EloInfo = () => {
   const { userData, setUserData } = useContext(UserContext);
@@ -139,7 +139,7 @@ export const EloInfo = () => {
                   setName(e.target.value)
                 }
               />
-              <DoneButton doneFn={submitName} />
+              <ConfirmButton confirmFn={submitName} />
             </span>
           ) : (
             <span className="edit-elo">
@@ -170,7 +170,7 @@ export const EloInfo = () => {
                   handleElo(e)
                 }
               />
-              <DoneButton doneFn={submitElo} />
+              <ConfirmButton confirmFn={submitElo} />
             </span>
           ) : (
             <span className="edit-elo">

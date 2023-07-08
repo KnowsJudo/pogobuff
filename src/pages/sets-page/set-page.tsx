@@ -104,9 +104,10 @@ export const SetPage: React.FC = () => {
       </div>
       {modal && (
         <CustomModal
-          cancel={() => setModal(false)}
-          confirm={changeModal}
-          prompt="Do you wish to remove all sets data?"
+          confirm
+          cancelFn={() => setModal(false)}
+          confirmFn={changeModal}
+          prompt="Remove all sets data?"
         />
       )}
     </section>

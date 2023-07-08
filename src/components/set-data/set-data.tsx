@@ -138,8 +138,8 @@ export const SetData: React.FC<ISetData> = (props) => {
       })}
       {modal && (
         <CustomModal
-          cancel={() => setModal(false)}
-          confirm={changeModal}
+          cancelFn={() => setModal(false)}
+          confirmFn={changeModal}
           prompt="Possible win cons:"
         />
       )}
