@@ -19,7 +19,7 @@ import SyncIcon from "@mui/icons-material/Sync";
 import "./set-page.css";
 
 export const SetPage: React.FC = () => {
-  const { setUserData } = useContext(UserContext);
+  const { userData, setUserData } = useContext(UserContext);
   const [addTie, setAddTie] = useState(() => retainTieState());
   const [modal, setModal] = useState<boolean>(false);
 
@@ -29,6 +29,9 @@ export const SetPage: React.FC = () => {
 
   const addSet: () => void = () => {
     setAddTie((prev: boolean[]) => [...prev, false]);
+    if (userData.sets.length > 5) {
+      return;
+    }
     setUserData((prev) => {
       return {
         ...prev,

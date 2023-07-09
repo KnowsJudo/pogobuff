@@ -20,7 +20,12 @@ export const CustomModal: React.FC<IModal> = (props) => {
             <ConfirmButton cancel={true} confirmFn={props.cancelFn} />
           </div>
         ) : (
-          <h1>Test</h1>
+          <div className="wincons-input">
+            <input></input>
+            <input></input>
+            <input></input>
+            <ConfirmButton confirmFn={props.cancelFn} />
+          </div>
         )}
       </div>
     </div>
