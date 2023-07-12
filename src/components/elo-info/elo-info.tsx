@@ -24,7 +24,6 @@ import "./elo-info.css";
 export const EloInfo = () => {
   const { userData, setUserData } = useContext(UserContext);
   const [name, setName] = useState<string>("");
-  const [nameEntered, setNameEntered] = useState(false);
   const [elo, setElo] = useState<number>(0);
   const [eloEntered, setEloEntered] = useState(() => retrieveElo());
   const [rank, setRank] = useState<string>("");
@@ -33,12 +32,11 @@ export const EloInfo = () => {
     setElo(Number(e.target.value));
   };
 
-  const submitName = async () => {
+  const submitName: () => void = async () => {
     try {
       await axios.post(`${apiURL}/api/sets`, { playername: name });
       const data = await axios.get(`${apiURL}/api/sets`);
       console.log(data);
-      setNameEntered(true);
       setUserData((prev: IUserState) => {
         return {
           ...prev,
@@ -46,7 +44,6 @@ export const EloInfo = () => {
             ...prev.elo,
             playername: name,
           },
-          sets: [...prev.sets],
         };
       });
     } catch (error) {
@@ -54,7 +51,19 @@ export const EloInfo = () => {
     }
   };
 
-  const submitElo = async () => {
+  const editName: () => void = () => {
+    setUserData((prev: IUserState) => {
+      return {
+        ...prev,
+        elo: {
+          ...prev.elo,
+          playername: "",
+        },
+      };
+    });
+  };
+
+  const submitElo: () => void = async () => {
     try {
       await axios.post(`${apiURL}/api/sets`, { elo: elo });
       const data = await axios.get(`${apiURL}/api/sets`);
@@ -70,7 +79,6 @@ export const EloInfo = () => {
             change: prev.elo.change ? prev.elo.change : 0,
             ending: prev.elo.ending ? prev.elo.ending : elo,
           },
-          sets: [...prev.sets],
         };
       });
     } catch (error) {
@@ -111,7 +119,7 @@ export const EloInfo = () => {
           <InputLabel>Badge</InputLabel>
           <Select
             label="Rank"
-            value={rank}
+            value={userData.elo.badge}
             onChange={(e) => setRank(e.target.value)}
           >
             <MenuItem value={1900}>20</MenuItem>
@@ -130,7 +138,7 @@ export const EloInfo = () => {
           alt="Rank badge"
         />
         <div className="elo-info">
-          {!nameEntered ? (
+          {!userData.elo.playername ? (
             <span className="enter-elo">
               <h6>Playername:&nbsp;</h6>
               <Input
@@ -148,7 +156,7 @@ export const EloInfo = () => {
               </Tooltip>
               <Tooltip title="Edit">
                 <EditIcon
-                  onClick={() => setNameEntered(false)}
+                  onClick={() => editName()}
                   sx={{
                     fontSize: 14,
                     marginLeft: "25%",

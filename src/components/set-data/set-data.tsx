@@ -4,7 +4,6 @@ import { useContext } from "react";
 import { UserContext } from "../../context";
 import { IUserState } from "../../types/elo";
 import { CustomModal } from "../modal/modal";
-import DeleteIcon from "@mui/icons-material/Delete";
 import Tooltip from "@mui/material/Tooltip";
 import GraphicEqIcon from "@mui/icons-material/GraphicEq";
 import SyncIcon from "@mui/icons-material/Sync";

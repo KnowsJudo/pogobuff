@@ -34,7 +34,14 @@ export const initialUserState: () => IUserState = () => {
   return stored
     ? stored
     : {
-        elo: { starting: 0, current: 0, change: 0, ending: 0 },
+        elo: {
+          playername: "",
+          badge: "",
+          starting: 0,
+          current: 0,
+          change: 0,
+          ending: 0,
+        },
         sets: startingSetData,
         candy: 0,
         candyXL: 0,

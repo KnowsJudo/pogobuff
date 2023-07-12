@@ -5,7 +5,8 @@ export interface ISet {
 }
 
 export interface IElo {
-  playername?: string;
+  playername: string;
+  badge: string;
   starting: number;
   current: number;
   change: number;
