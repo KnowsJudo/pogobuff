@@ -64,7 +64,7 @@ export const SetPage: React.FC = () => {
     setUserData((prev: IUserState) => {
       return {
         ...prev,
-        elo: { ...prev.elo, starting: 0, current: 0, change: 0, ending: 0 },
+        elo: { ...prev.elo, current: prev.elo.starting, change: 0, ending: 0 },
         sets: startingSetData,
       };
     });

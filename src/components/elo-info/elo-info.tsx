@@ -26,7 +26,6 @@ export const EloInfo = () => {
   const [name, setName] = useState<string>("");
   const [elo, setElo] = useState<number>(0);
   const [eloEntered, setEloEntered] = useState(() => retrieveElo());
-  const [rank, setRank] = useState<string>("");
 
   const handleElo = (e: React.ChangeEvent<HTMLInputElement>) => {
     setElo(Number(e.target.value));
@@ -86,19 +85,16 @@ export const EloInfo = () => {
     }
   };
 
-  const calcBadge = (rank: number) => {
-    switch (true) {
-      case rank < 2000:
-        return Rank20;
-      case rank < 2500:
-        return Ace;
-      case rank < 2750:
-        return Veteran;
-      case rank < 3000:
-        return Expert;
-      default:
-        return Legend;
-    }
+  const calcBadge = (badge: string) => {
+    setUserData((prev: IUserState) => {
+      return {
+        ...prev,
+        elo: {
+          ...prev.elo,
+          badge,
+        },
+      };
+    });
   };
 
   const totalScore = () => {
@@ -120,23 +116,25 @@ export const EloInfo = () => {
           <Select
             label="Rank"
             value={userData.elo.badge}
-            onChange={(e) => setRank(e.target.value)}
+            onChange={(e) => calcBadge(e.target.value)}
           >
-            <MenuItem value={1900}>20</MenuItem>
-            <MenuItem value={2000}>Ace</MenuItem>
-            <MenuItem value={2500}>Veteran</MenuItem>
-            <MenuItem value={2750}>Expert</MenuItem>
-            <MenuItem value={3000}>Legend</MenuItem>
+            <MenuItem value={Rank20}>20</MenuItem>
+            <MenuItem value={Ace}>Ace</MenuItem>
+            <MenuItem value={Veteran}>Veteran</MenuItem>
+            <MenuItem value={Expert}>Expert</MenuItem>
+            <MenuItem value={Legend}>Legend</MenuItem>
           </Select>
         </FormControl>
       </div>
       <div className="elo-display">
-        <img
-          src={calcBadge(Number(rank))}
-          height={40}
-          width={40}
-          alt="Rank badge"
-        />
+        {userData.elo.badge && (
+          <img
+            src={userData.elo.badge}
+            height={40}
+            width={40}
+            alt="Rank badge"
+          />
+        )}
         <div className="elo-info">
           {!userData.elo.playername ? (
             <span className="enter-elo">
