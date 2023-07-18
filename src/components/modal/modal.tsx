@@ -1,12 +1,14 @@
 import React from "react";
 import { ConfirmButton } from "../confirm-button/confirm-button";
+import { IWinCons } from "../set-data/set-data";
 import "./modal.css";
 
 interface IModal {
   confirm?: boolean;
   cancelFn: () => void;
-  confirmFn: () => void;
+  confirmFn: (inputs?: IWinCons, setNo?: number) => void;
   prompt: string;
+  winCons?: IWinCons;
 }
 
 export const CustomModal: React.FC<IModal> = (props) => {
@@ -21,9 +23,9 @@ export const CustomModal: React.FC<IModal> = (props) => {
           </div>
         ) : (
           <div className="wincons-input">
-            <input></input>
-            <input></input>
-            <input></input>
+            <input value={props.winCons?.firstInput} />
+            <input value={props.winCons?.secondInput} />
+            <input value={props.winCons?.thirdInput} />
             <ConfirmButton confirmFn={props.cancelFn} />
           </div>
         )}
