@@ -29,7 +29,7 @@ export const SetData: React.FC<ISetData> = (props) => {
   const addTieToArray = (setNumber: number) => {
     props.setAddTie((prev) =>
       prev.map((next, i) => {
-        return i === setNumber ? true : next;
+        return i === setNumber || i === prev.length + 1 ? true : next;
       })
     );
   };
