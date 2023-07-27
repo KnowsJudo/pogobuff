@@ -23,6 +23,7 @@ export interface IWinCons {
 export const SetData: React.FC<ISetData> = (props) => {
   const { userData, setUserData } = useContext(UserContext);
   const [winnable, setWinnable] = useState<number[]>([0, 0, 0, 0, 0]);
+  //Modal needs to be attached to index of each specific map item
   const [modal, setModal] = useState<boolean>(false);
   const [winCons, setWinCons] = useState<IWinCons[]>([{}]);
 
@@ -92,6 +93,12 @@ export const SetData: React.FC<ISetData> = (props) => {
       });
     }
     setModal(false);
+  };
+
+  const addWinCons = (index: number, newWinCons: IWinCons) => {
+    const updatedWinCons = [...winCons];
+    updatedWinCons[index] = newWinCons;
+    setWinCons(updatedWinCons);
   };
 
   return (
