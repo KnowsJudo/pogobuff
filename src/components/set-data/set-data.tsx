@@ -23,8 +23,7 @@ export interface IWinCons {
 export const SetData: React.FC<ISetData> = (props) => {
   const { userData, setUserData } = useContext(UserContext);
   const [winnable, setWinnable] = useState<number[]>([0, 0, 0, 0, 0]);
-  //Modal needs to be attached to index of each specific map item
-  const [modal, setModal] = useState<boolean>(false);
+  const [modalIndex, setModalIndex] = useState<number>(-1);
   const [winCons, setWinCons] = useState<IWinCons[]>([{}]);
 
   const addTieToArray = (setNumber: number) => {
@@ -79,26 +78,16 @@ export const SetData: React.FC<ISetData> = (props) => {
     });
   };
 
-  const changeModal: (inputs?: IWinCons, setNo?: number) => void = (
+  const changeModal: (inputs: IWinCons, index: number) => void = (
     inputs,
-    setNo
+    index
   ) => {
-    if (inputs && setNo) {
-      setWinCons((prev) => {
-        if (setNo === prev[setNo]) {
-          return [...prev, inputs];
-        } else {
-          return prev;
-        }
-      });
-    }
-    setModal(false);
-  };
-
-  const addWinCons = (index: number, newWinCons: IWinCons) => {
-    const updatedWinCons = [...winCons];
-    updatedWinCons[index] = newWinCons;
-    setWinCons(updatedWinCons);
+    setWinCons((prevWinCons) => {
+      const updatedWinCons = [...prevWinCons];
+      updatedWinCons[index] = inputs;
+      return updatedWinCons;
+    });
+    setModalIndex(-1);
   };
 
   return (
@@ -123,7 +112,7 @@ export const SetData: React.FC<ISetData> = (props) => {
                 <Tooltip title="Note win conditions">
                   <button
                     className="wincon-button"
-                    onClick={() => setModal(true)}
+                    onClick={() => setModalIndex(ind)}
                   >
                     ?
                   </button>
@@ -158,9 +147,9 @@ export const SetData: React.FC<ISetData> = (props) => {
                   />
                 </Tooltip>
               </span>
-              {modal && (
+              {modalIndex === ind && (
                 <CustomModal
-                  cancelFn={() => setModal(false)}
+                  cancelFn={() => setModalIndex(-1)}
                   confirmFn={() => changeModal(winCons[ind], ind)}
                   winCons={winCons[ind]}
                   prompt="Possible win cons:"

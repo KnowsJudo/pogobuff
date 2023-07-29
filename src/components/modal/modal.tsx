@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { ConfirmButton } from "../confirm-button/confirm-button";
 import { IWinCons } from "../set-data/set-data";
 import "./modal.css";
@@ -12,6 +12,20 @@ interface IModal {
 }
 
 export const CustomModal: React.FC<IModal> = (props) => {
+  const [localWinCons, setLocalWinCons] = useState<IWinCons>(
+    props.winCons || {}
+  );
+
+  const handleInputChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    inputKey: keyof IWinCons
+  ) => {
+    setLocalWinCons({
+      ...localWinCons,
+      [inputKey]: event.target.value,
+    });
+  };
+
   return (
     <div className="modal-container" onClick={() => props.cancelFn()}>
       <div className="modal-inner" onClick={(e) => e.stopPropagation()}>
@@ -23,10 +37,19 @@ export const CustomModal: React.FC<IModal> = (props) => {
           </div>
         ) : (
           <div className="wincons-input">
-            <input value={props.winCons?.firstInput} />
-            <input value={props.winCons?.secondInput} />
-            <input value={props.winCons?.thirdInput} />
-            <ConfirmButton confirmFn={props.cancelFn} />
+            <input
+              value={localWinCons.firstInput || ""}
+              onChange={(e) => handleInputChange(e, "firstInput")}
+            />
+            <input
+              value={localWinCons.secondInput || ""}
+              onChange={(e) => handleInputChange(e, "secondInput")}
+            />
+            <input
+              value={localWinCons.thirdInput || ""}
+              onChange={(e) => handleInputChange(e, "thirdInput")}
+            />
+            <ConfirmButton confirmFn={() => props.confirmFn(localWinCons)} />
           </div>
         )}
       </div>
