@@ -24,7 +24,13 @@ export const SetData: React.FC<ISetData> = (props) => {
   const { userData, setUserData } = useContext(UserContext);
   const [winnable, setWinnable] = useState<number[]>([0, 0, 0, 0, 0]);
   const [modalIndex, setModalIndex] = useState<number>(-1);
-  const [winCons, setWinCons] = useState<IWinCons[]>([{}]);
+  const [winCons, setWinCons] = useState<IWinCons[]>([
+    { firstInput: "", secondInput: "", thirdInput: "" },
+    { firstInput: "", secondInput: "", thirdInput: "" },
+    { firstInput: "", secondInput: "", thirdInput: "" },
+    { firstInput: "", secondInput: "", thirdInput: "" },
+    { firstInput: "", secondInput: "", thirdInput: "" },
+  ]);
 
   const addTieToArray = (setNumber: number) => {
     props.setAddTie((prev) =>
@@ -78,16 +84,20 @@ export const SetData: React.FC<ISetData> = (props) => {
     });
   };
 
-  const changeModal: (inputs: IWinCons, index: number) => void = (
+  const changeModal: (inputs?: IWinCons, index?: number) => void = (
     inputs,
     index
   ) => {
-    setWinCons((prevWinCons) => {
-      const updatedWinCons = [...prevWinCons];
-      updatedWinCons[index] = inputs;
-      return updatedWinCons;
-    });
-    setModalIndex(-1);
+    console.log(inputs, "ins", index);
+    if (inputs && index) {
+      setWinCons((prev) => {
+        const updatedWinCons = [...prev];
+        updatedWinCons[index] = inputs;
+        return updatedWinCons;
+      });
+      setModalIndex(-1);
+    }
+    console.log(winCons);
   };
 
   return (
@@ -150,8 +160,9 @@ export const SetData: React.FC<ISetData> = (props) => {
               {modalIndex === ind && (
                 <CustomModal
                   cancelFn={() => setModalIndex(-1)}
-                  confirmFn={() => changeModal(winCons[ind], ind)}
+                  confirmFn={(localWinCons) => changeModal(localWinCons, ind)}
                   winCons={winCons[ind]}
+                  index={ind}
                   prompt="Possible win cons:"
                 />
               )}
