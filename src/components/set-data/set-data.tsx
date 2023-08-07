@@ -89,7 +89,8 @@ export const SetData: React.FC<ISetData> = (props) => {
     index
   ) => {
     console.log(inputs, "ins", index);
-    if (inputs && index) {
+    //Include 0 value for index
+    if (inputs !== undefined && index !== undefined) {
       setWinCons((prev) => {
         const updatedWinCons = [...prev];
         updatedWinCons[index] = inputs;

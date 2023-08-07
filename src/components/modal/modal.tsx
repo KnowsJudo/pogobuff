@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { ConfirmButton } from "../confirm-button/confirm-button";
 import { IWinCons } from "../set-data/set-data";
+import { Input } from "@mui/material";
 import "./modal.css";
 
 interface IModal {
@@ -20,7 +21,7 @@ export const CustomModal: React.FC<IModal> = (props) => {
   });
 
   const handleInputChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
     inputKey: keyof IWinCons
   ) => {
     setLocalWinCons((prev) => {
@@ -44,18 +45,18 @@ export const CustomModal: React.FC<IModal> = (props) => {
         ) : (
           <div className="wincons-input">
             {props.winCons?.firstInput ? (
-              props.winCons?.firstInput
+              <p>{props.winCons?.firstInput}</p>
             ) : (
-              <input
+              <Input
                 value={localWinCons.firstInput}
                 onChange={(e) => handleInputChange(e, "firstInput")}
               />
             )}
-            <input
+            <Input
               value={localWinCons.secondInput}
               onChange={(e) => handleInputChange(e, "secondInput")}
             />
-            <input
+            <Input
               value={localWinCons.thirdInput}
               onChange={(e) => handleInputChange(e, "thirdInput")}
             />
