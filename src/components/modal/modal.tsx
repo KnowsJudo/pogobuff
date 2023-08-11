@@ -15,9 +15,9 @@ interface IModal {
 
 export const CustomModal: React.FC<IModal> = (props) => {
   const [localWinCons, setLocalWinCons] = useState<IWinCons>({
-    firstInput: "",
-    secondInput: "",
-    thirdInput: "",
+    firstInput: props.winCons?.firstInput || "",
+    secondInput: props.winCons?.secondInput || "",
+    thirdInput: props.winCons?.thirdInput || "",
   });
 
   const handleInputChange = (
@@ -52,14 +52,22 @@ export const CustomModal: React.FC<IModal> = (props) => {
                 onChange={(e) => handleInputChange(e, "firstInput")}
               />
             )}
-            <Input
-              value={localWinCons.secondInput}
-              onChange={(e) => handleInputChange(e, "secondInput")}
-            />
-            <Input
-              value={localWinCons.thirdInput}
-              onChange={(e) => handleInputChange(e, "thirdInput")}
-            />
+            {props.winCons?.secondInput ? (
+              <p>{props.winCons?.secondInput}</p>
+            ) : (
+              <Input
+                value={localWinCons.secondInput}
+                onChange={(e) => handleInputChange(e, "secondInput")}
+              />
+            )}
+            {props.winCons?.thirdInput ? (
+              <p>{props.winCons?.thirdInput}</p>
+            ) : (
+              <Input
+                value={localWinCons.thirdInput}
+                onChange={(e) => handleInputChange(e, "thirdInput")}
+              />
+            )}
             <ConfirmButton confirmFn={handleConfirm} />
           </div>
         )}
