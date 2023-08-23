@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import { BackButton } from "../../components/back-button/back-button";
 import { NavBar } from "../../components/nav-bar/nav-bar";
-import { Button, Input, MenuItem } from "@mui/material";
+import { Input, MenuItem } from "@mui/material";
 import { pokeApi } from "../../helpers/api-url";
 import { debounce } from "../../helpers/debounce";
 import { ConfirmButton } from "../../components/confirm-button/confirm-button";
@@ -85,22 +85,21 @@ export const RewardsPage: React.FC = () => {
   };
 
   return (
-    <section className="rewards-page">
+    <section className="rewards-page" onClick={() => setMenuOpen(false)}>
       <NavBar />
       <BackButton />
       <div className="rewards-input">
-        <span className="search-input">
-          <Button>
-            <SearchIcon style={{ color: "black" }} />
-          </Button>
+        <div className="search-input">
+          <SearchIcon style={{ color: "black", paddingRight: "10px" }} />
           <Input
             placeholder="Encounter"
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
           />
-
-          {menuOpen &&
-            options.map((next, i) => {
+        </div>
+        {menuOpen && (
+          <div className="menu-options">
+            {options.map((next, i) => {
               return (
                 <MenuItem
                   key={i}
@@ -111,12 +110,14 @@ export const RewardsPage: React.FC = () => {
                 </MenuItem>
               );
             })}
-          {!options.length && searchInput.length > 2 && (
-            <p>
-              <i>No pokemon found</i>
-            </p>
-          )}
-        </span>
+            {!options.length && searchInput.length > 2 && (
+              <p>
+                <i>No pokemon found</i>
+              </p>
+            )}
+          </div>
+        )}
+
         {selected.map((next, i) => {
           return (
             <span key={i} className="selected-pokes">
