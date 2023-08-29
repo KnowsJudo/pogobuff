@@ -7,9 +7,10 @@ import { initialUserState } from "./context";
 import { HomePage } from "./pages/home-page/home-page";
 import { CandyPage } from "./pages/candy-page/candy-page";
 import { Footer } from "./components/footer/footer";
-import "./App.css";
 import { TeamsPage } from "./pages/teams-page/teams-page";
 import { RewardsPage } from "./pages/rewards-page/rewards-page";
+import { NavBar } from "./components/nav-bar/nav-bar";
+import "./App.css";
 
 const App: React.FC = () => {
   const [userData, setUserData] = useState(() => initialUserState());
@@ -23,6 +24,7 @@ const App: React.FC = () => {
       <main className="App-container">
         <UserContext.Provider value={{ userData, setUserData }}>
           <HashRouter>
+            <NavBar />
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/sets" element={<SetPage />} />

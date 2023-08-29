@@ -9,7 +9,6 @@ import {
   Select,
 } from "@mui/material";
 import { BackButton } from "../../components/back-button/back-button";
-import { NavBar } from "../../components/nav-bar/nav-bar";
 import { apiURL } from "../../helpers/api-url";
 import { TeamsDisplay } from "../../components/teams-display/teams-display";
 import { LeagueIcon } from "../../components/league-icon/league-icon";
@@ -102,7 +101,6 @@ export const TeamsPage: React.FC = () => {
 
   return (
     <section className="teams-page">
-      <NavBar />
       <BackButton />
       <div className="league-select">
         <FormControl style={{ margin: "auto", width: "200px" }}>

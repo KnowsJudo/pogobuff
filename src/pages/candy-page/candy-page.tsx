@@ -1,5 +1,4 @@
 import React from "react";
-import { NavBar } from "../../components/nav-bar/nav-bar";
 import { useContext, useState } from "react";
 import { UserContext } from "../../context";
 import { Input, List, ListItem, Tooltip } from "@mui/material";
@@ -46,7 +45,6 @@ export const CandyPage: React.FC = () => {
 
   return (
     <section className="candy-page">
-      <NavBar />
       <BackButton />
       <div className="candy-container">
         <h6>Candy: </h6>

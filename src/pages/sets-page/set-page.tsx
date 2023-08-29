@@ -9,7 +9,6 @@ import {
   startingTieState,
   UserContext,
 } from "../../context";
-import { NavBar } from "../../components/nav-bar/nav-bar";
 import { BackButton } from "../../components/back-button/back-button";
 import { IUserState } from "../../types/elo";
 import { CustomModal } from "../../components/modal/modal";
@@ -72,7 +71,6 @@ export const SetPage: React.FC = () => {
 
   return (
     <section className="set-page">
-      <NavBar />
       <BackButton />
       <EloInfo />
       <SetData addTie={addTie} setAddTie={setAddTie} />
