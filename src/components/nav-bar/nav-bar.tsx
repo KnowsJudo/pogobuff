@@ -6,6 +6,7 @@ export const NavBar: React.FC = () => {
   return (
     <nav className="nav-bar">
       <ul className="nav-list">
+        <NavBarLink destination="/" label="PogoBuff" />
         <NavBarLink destination="/" label="Home" />
         <NavBarLink destination="sets/" label="Sets" />
         <NavBarLink destination="/teams" label="Teams" />

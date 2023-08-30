@@ -12,8 +12,7 @@ export const HomeLink: React.FC<IHomeLink> = (props) => {
     <Link to={props.link} style={{ textDecoration: "none" }}>
       <Button
         variant="contained"
-        style={{ backgroundColor: "black" }}
-        size="small"
+        style={{ backgroundColor: "black", border: "1px solid white" }}
       >
         {props.title}
       </Button>

@@ -21,10 +21,10 @@ const App: React.FC = () => {
 
   return (
     <div className="App">
-      <main className="App-container">
-        <UserContext.Provider value={{ userData, setUserData }}>
-          <HashRouter>
-            <NavBar />
+      <UserContext.Provider value={{ userData, setUserData }}>
+        <HashRouter>
+          <NavBar />
+          <main className="App-container">
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/sets" element={<SetPage />} />
@@ -34,9 +34,9 @@ const App: React.FC = () => {
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
             <Footer />
-          </HashRouter>
-        </UserContext.Provider>
-      </main>
+          </main>
+        </HashRouter>
+      </UserContext.Provider>
     </div>
   );
 };

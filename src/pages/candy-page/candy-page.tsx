@@ -1,7 +1,7 @@
 import React from "react";
 import { useContext, useState } from "react";
 import { UserContext } from "../../context";
-import { Input, List, ListItem, Tooltip } from "@mui/material";
+import { Input, List, ListItem } from "@mui/material";
 import { BackButton } from "../../components/back-button/back-button";
 import { IUserState } from "../../types/elo";
 import { ConfirmButton } from "../../components/confirm-button/confirm-button";
@@ -76,9 +76,7 @@ export const CandyPage: React.FC = () => {
             onChange={(e) => handleCandidate(e)}
             value={newCandidate}
           />
-          <Tooltip title="Add to List">
-            <ConfirmButton confirmFn={addNewCandidate} />
-          </Tooltip>
+          <ConfirmButton confirmFn={addNewCandidate} />
         </span>
         {candidates.map((next, i) => {
           return (
