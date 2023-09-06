@@ -11,13 +11,15 @@
   gap: 1em;
   flex-wrap: wrap;
   margin-top: 10px;
+  color: black;
 }
 
 .set-data-inner {
   display: flex;
   flex-direction: column;
   padding: 20px;
-  background-color: #f8f8f8;
+  /* background-color: #f8f8f8; */
+  border: 5px solid white;
   border-radius: 7px;
 }
 

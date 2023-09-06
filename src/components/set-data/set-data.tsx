@@ -125,7 +125,7 @@ export const SetData: React.FC<ISetData> = (props) => {
                     className="wincon-button"
                     onClick={() => setModalIndex(ind)}
                   >
-                    ?
+                    *
                   </button>
                 </Tooltip>
               </div>
