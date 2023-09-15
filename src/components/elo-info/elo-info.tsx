@@ -143,6 +143,7 @@ export const EloInfo = () => {
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   setName(e.target.value)
                 }
+                style={{ color: "white" }}
               />
               <ConfirmButton confirmFn={submitName} />
             </span>
@@ -174,6 +175,7 @@ export const EloInfo = () => {
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   handleElo(e)
                 }
+                style={{ color: "white" }}
               />
               <ConfirmButton confirmFn={submitElo} />
             </span>

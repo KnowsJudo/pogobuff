@@ -78,28 +78,24 @@ export const SetPage: React.FC = () => {
         <span className="add-set">
           <Button
             variant="contained"
-            style={{ backgroundColor: "#3d3d3d" }}
+            style={{ backgroundColor: "black", border: "1px solid white" }}
             onClick={() => addSet()}
           >
-            <AddIcon /> &nbsp; New Set
+            <AddIcon /> &nbsp; Add Set
           </Button>
         </span>
         <span className="battle-day">
           <Button
-            variant="outlined"
-            style={{ borderColor: "black", color: "black" }}
+            variant="contained"
+            style={{ backgroundColor: "black", border: "1px solid white" }}
             onClick={() => addBattleDay()}
           >
             <CatchingPokemonIcon /> &nbsp; Go Battle Day
           </Button>
         </span>
         <span className="remove-all">
-          <Button
-            variant="outlined"
-            style={{ borderColor: "black", color: "#ff4d4d" }}
-            onClick={() => setModal(true)}
-          >
-            <SyncIcon /> &nbsp; Reset all
+          <Button variant="outlined" onClick={() => setModal(true)}>
+            <SyncIcon />
           </Button>
         </span>
       </div>

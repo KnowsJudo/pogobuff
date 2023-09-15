@@ -32,15 +32,16 @@ h6 {
 
 div.MuiInput-underline::before,
 div.MuiInput-underline::after {
-  border-bottom-color: black;
+  border-bottom-color: white;
 }
 
 div.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
-  border-color: black;
+  border-color: white;
 }
 
+label.MuiInputLabel-root,
 label.MuiInputLabel-root.Mui-focused {
-  color: grey;
+  color: white;
 }
 
 .player-badge {
