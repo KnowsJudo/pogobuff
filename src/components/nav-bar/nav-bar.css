@@ -4,8 +4,13 @@
   color: #ffffff;
 }
 
+.nav-header {
+  margin: 0;
+}
+
 .nav-list {
   display: flex;
+  align-items: center;
   flex: 1 1 auto;
   padding: 10px;
   justify-content: space-evenly;
@@ -16,8 +21,26 @@
 li {
   list-style-type: none;
   font-size: 18px;
+  position: relative;
 }
 
-li:hover {
-  opacity: 0.9;
+li::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: white;
+  transition: width 0.5s ease-in-out;
+  transform: scaleX(0);
+  transform-origin: center;
+}
+
+li:hover::before {
+  width: 100%;
+  justify-content: center;
+  transform: scaleX(1);
+  transform-origin: center;
+  transition: width 0.2s ease-in-out;
 }

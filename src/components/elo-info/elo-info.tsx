@@ -126,14 +126,16 @@ export const EloInfo = () => {
         </FormControl>
       </div>
       <div className="elo-display">
-        {userData.elo.badge && (
-          <img
-            src={userData.elo.badge}
-            height={40}
-            width={40}
-            alt="Rank badge"
-          />
-        )}
+        <div className="elo-badge">
+          {userData.elo.badge && (
+            <img
+              src={userData.elo.badge}
+              height={40}
+              width={40}
+              alt="Rank badge"
+            />
+          )}
+        </div>
         <div className="elo-info">
           {!userData.elo.playername ? (
             <span className="enter-elo">

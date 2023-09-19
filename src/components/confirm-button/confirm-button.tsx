@@ -14,7 +14,8 @@ export const ConfirmButton: React.FC<IConfirm> = (props) => {
     <Button
       onClick={() => props.confirmFn()}
       className="done-button"
-      style={{ color: "white" }}
+      variant="contained"
+      style={{ backgroundColor: "black", color: "white" }}
     >
       {props.cancel ? <CloseIcon /> : <DoneIcon />}
     </Button>
