@@ -2,7 +2,6 @@ import React from "react";
 import { useContext, useState } from "react";
 import { UserContext } from "../../context";
 import { Input, List, ListItem } from "@mui/material";
-import { BackButton } from "../../components/back-button/back-button";
 import { IUserState } from "../../types/elo";
 import { ConfirmButton } from "../../components/confirm-button/confirm-button";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -45,7 +44,6 @@ export const CandyPage: React.FC = () => {
 
   return (
     <section className="candy-page">
-      <BackButton />
       <div className="candy-container">
         <h6>Candy: </h6>
         <div className="current-candy">

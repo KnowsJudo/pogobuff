@@ -1,6 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
 import axios from "axios";
-import { BackButton } from "../../components/back-button/back-button";
 import { Input, MenuItem } from "@mui/material";
 import { pokeApi } from "../../helpers/api-url";
 import { debounce } from "../../helpers/debounce";
@@ -85,7 +84,6 @@ export const RewardsPage: React.FC = () => {
 
   return (
     <section className="rewards-page" onClick={() => setMenuOpen(false)}>
-      <BackButton />
       <div className="rewards-input">
         <div className="search-input">
           <SearchIcon style={{ color: "black", paddingRight: "10px" }} />

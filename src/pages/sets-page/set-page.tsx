@@ -9,7 +9,6 @@ import {
   startingTieState,
   UserContext,
 } from "../../context";
-import { BackButton } from "../../components/back-button/back-button";
 import { IUserState } from "../../types/elo";
 import { CustomModal } from "../../components/modal/modal";
 import AddIcon from "@mui/icons-material/Add";
@@ -71,7 +70,6 @@ export const SetPage: React.FC = () => {
 
   return (
     <section className="set-page">
-      <BackButton />
       <EloInfo />
       <SetData addTie={addTie} setAddTie={setAddTie} />
       <div className="set-options">

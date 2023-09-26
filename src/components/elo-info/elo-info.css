@@ -6,7 +6,7 @@ h6 {
 .current-stats {
   display: flex;
   justify-content: space-evenly;
-  align-items: center;
+  padding-top: 25px;
 }
 
 .elo-display {

@@ -9,7 +9,7 @@
 }
 
 .candy-container > h6 {
-  margin-top: 20px;
+  margin-top: 25px;
 }
 
 .candy-pokes {
@@ -22,6 +22,11 @@
 .current-candyXL {
   display: flex;
   align-items: center;
+}
+
+.MuiInputBase-root.MuiInput-root.MuiInput-underline.MuiInputBase-colorPrimary.MuiInputBase-adornedStart.css-1tcs2i1-MuiInputBase-root-MuiInput-root,
+.MuiInputBase-input.MuiInput-input.css-1x51dt5-MuiInputBase-input-MuiInput-input {
+  color: white;
 }
 
 .candy-image {
