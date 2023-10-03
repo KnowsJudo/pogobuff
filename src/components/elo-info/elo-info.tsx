@@ -110,7 +110,7 @@ export const EloInfo = () => {
   return (
     <div className="current-stats">
       <div className="player-badge">
-        <FormControl>
+        <FormControl style={{ width: "6.5em" }}>
           <InputLabel>Badge</InputLabel>
           <Select
             label="Rank"
@@ -145,7 +145,7 @@ export const EloInfo = () => {
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   setName(e.target.value)
                 }
-                style={{ color: "white" }}
+                style={{ color: "white", marginRight: "10px" }}
               />
               <ConfirmButton confirmFn={submitName} />
             </span>
@@ -158,7 +158,7 @@ export const EloInfo = () => {
                 <EditIcon
                   onClick={() => editName()}
                   sx={{
-                    fontSize: 14,
+                    fontSize: 12,
                     marginLeft: "25%",
                     "&:hover": { cursor: "pointer" },
                   }}
@@ -177,7 +177,7 @@ export const EloInfo = () => {
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   handleElo(e)
                 }
-                style={{ color: "white" }}
+                style={{ color: "white", marginRight: "12px" }}
               />
               <ConfirmButton confirmFn={submitElo} />
             </span>
@@ -190,7 +190,7 @@ export const EloInfo = () => {
                 <EditIcon
                   onClick={() => setEloEntered(false)}
                   sx={{
-                    fontSize: 14,
+                    fontSize: 12,
                     marginLeft: "25%",
                     "&:hover": { cursor: "pointer" },
                   }}
@@ -200,7 +200,10 @@ export const EloInfo = () => {
           )}
         </div>
       </div>
-      {eloEntered && <h6>Estimated Rank {userData.elo.current} </h6>}
+      <h6>
+        Estimated Rank&nbsp;
+        {!userData.elo.current ? "Unknown" : userData.elo.current}
+      </h6>
       <h6>{`Record: ${totalScore()}`}</h6>
     </div>
   );

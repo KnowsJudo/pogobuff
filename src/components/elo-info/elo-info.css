@@ -7,6 +7,7 @@ h6 {
   display: flex;
   justify-content: space-evenly;
   padding-top: 25px;
+  margin: 0 100px;
 }
 
 .elo-display {
@@ -17,11 +18,17 @@ h6 {
 .elo-info {
   display: flex;
   flex-direction: column;
+  width: 14em;
   padding: 0 0 25px 20px;
 }
 
 .enter-elo {
   display: flex;
+  align-items: center;
+}
+
+.enter-elo > h6 {
+  padding-right: 10px;
 }
 
 .edit-elo {
@@ -70,6 +77,7 @@ label.MuiInputLabel-root.Mui-focused {
   }
   .elo-info {
     flex-direction: column;
+    width: 9em;
   }
   .player-badge {
     width: 40%;
