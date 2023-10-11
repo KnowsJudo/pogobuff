@@ -12,7 +12,11 @@ export const ScoreButton: React.FC<IScoreButton> = (props) => {
   return (
     <Button
       onClick={() => props.updateScore(props.side)}
-      style={{ borderRadius: "8px", backgroundColor: "black", margin: "auto" }}
+      style={{
+        borderRadius: "8px",
+        backgroundColor: "black",
+        margin: "auto",
+      }}
       className="score-button"
       variant="contained"
     >

@@ -1,0 +1,10 @@
+.score-numbers {
+  display: flex;
+  height: 110px;
+  align-items: center;
+  width: 100%;
+}
+
+.score-stack {
+  display: flex;
+}

@@ -2,8 +2,8 @@ import React from "react";
 import { useContext } from "react";
 import { ScoreButton } from "../score-button/score-button";
 import { UserContext } from "../../context";
-import { Stack } from "@mui/material";
 import { ISet, IUserState } from "../../types/elo";
+import "./scorer.css";
 
 interface IScorer {
   id: number;
@@ -59,18 +59,20 @@ export const Scorer: React.FC<IScorer> = (props) => {
   };
 
   return (
-    <Stack direction="row">
-      <ScoreButton
-        score={props.score.wins}
-        updateScore={updateScore}
-        side={"left"}
-      />
-      <h1>-</h1>
-      <ScoreButton
-        score={props.score.losses}
-        updateScore={updateScore}
-        side={"right"}
-      />
+    <div className="score-stack">
+      <div className="score-numbers">
+        <ScoreButton
+          score={props.score.wins}
+          updateScore={updateScore}
+          side={"left"}
+        />
+        <h1>-</h1>
+        <ScoreButton
+          score={props.score.losses}
+          updateScore={updateScore}
+          side={"right"}
+        />
+      </div>
       {props.addTie && (
         <>
           <h1>-</h1>
@@ -81,6 +83,6 @@ export const Scorer: React.FC<IScorer> = (props) => {
           />
         </>
       )}
-    </Stack>
+    </div>
   );
 };

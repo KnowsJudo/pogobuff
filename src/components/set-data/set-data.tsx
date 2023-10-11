@@ -7,6 +7,7 @@ import { CustomModal } from "../modal/modal";
 import Tooltip from "@mui/material/Tooltip";
 import GraphicEqIcon from "@mui/icons-material/GraphicEq";
 import SyncIcon from "@mui/icons-material/Sync";
+import EditIcon from "@mui/icons-material/Edit";
 import "./set-data.css";
 
 interface ISetData {
@@ -121,43 +122,16 @@ export const SetData: React.FC<ISetData> = (props) => {
                   /5
                 </span>
                 <Tooltip title="Note win conditions">
-                  <button
-                    className="wincon-button"
+                  <EditIcon
                     onClick={() => setModalIndex(ind)}
-                  >
-                    *
-                  </button>
-                </Tooltip>
-              </div>
-              <span className="set-data-edit">
-                {!props.addTie[ind] && (
-                  <>
-                    <Tooltip title="Add a tie">
-                      <GraphicEqIcon
-                        onClick={() => {
-                          addTieToArray(ind);
-                        }}
-                        sx={{
-                          fontSize: 18,
-                          marginRight: "auto",
-                          marginLeft: "5%",
-                          "&:hover": { cursor: "pointer" },
-                        }}
-                      />
-                    </Tooltip>
-                  </>
-                )}
-                <Tooltip title="Reset">
-                  <SyncIcon
-                    onClick={() => removeSet(ind)}
                     sx={{
-                      fontSize: 18,
-                      margin: props.addTie[ind] ? "auto" : "auto 5%",
+                      fontSize: 12,
                       "&:hover": { cursor: "pointer" },
                     }}
                   />
                 </Tooltip>
-              </span>
+              </div>
+
               {modalIndex === ind && (
                 <CustomModal
                   cancelFn={() => setModalIndex(-1)}
@@ -168,6 +142,35 @@ export const SetData: React.FC<ISetData> = (props) => {
                 />
               )}
             </div>
+            <span className="set-data-edit">
+              {!props.addTie[ind] && (
+                <>
+                  <Tooltip title="Add a tie">
+                    <GraphicEqIcon
+                      onClick={() => {
+                        addTieToArray(ind);
+                      }}
+                      sx={{
+                        fontSize: 18,
+                        marginRight: "auto",
+                        marginLeft: "7%",
+                        "&:hover": { cursor: "pointer" },
+                      }}
+                    />
+                  </Tooltip>
+                </>
+              )}
+              <Tooltip title="Reset">
+                <SyncIcon
+                  onClick={() => removeSet(ind)}
+                  sx={{
+                    fontSize: 18,
+                    margin: props.addTie[ind] ? "auto" : "auto 7%",
+                    "&:hover": { cursor: "pointer" },
+                  }}
+                />
+              </Tooltip>
+            </span>
           </div>
         );
       })}
